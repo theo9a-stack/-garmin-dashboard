@@ -1,0 +1,6 @@
+{
+  "resting_hr_fallback": 55,
+  "max_hr": 190,
+  "sex": "male",
+  "timezone": "Europe/Berlin"
+}
