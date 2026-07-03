@@ -195,8 +195,8 @@ def compute_recovery_score(today: dict, history: list[dict]) -> dict:
     if today.get("sleep_score") is not None:
         contributions["sleep"] = max(-1.0, min(1.0, (today["sleep_score"] - 50) / 50))
 
-    if today.get("body_battery_wake") is not None:
-        contributions["battery"] = max(-1.0, min(1.0, (today["body_battery_wake"] - 50) / 50))
+    if today.get("body_battery_high") is not None:
+        contributions["battery"] = max(-1.0, min(1.0, (today["body_battery_high"] - 50) / 50))
 
     if not contributions:
         return {"score": None, "band": "no data", "components_used": []}
