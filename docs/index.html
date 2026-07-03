@@ -256,7 +256,7 @@ Body battery: peak ${today.body_battery_high}, low ${today.body_battery_low}
 Steps: ${today.steps}
 Today's activities: ${actDesc}`;
 
-  return `Write a short ${mode} training brief (3-5 sentences, plain text, no headers or bullet points) for an athlete based only on the numbers below. Be direct and specific, reference the actual figures, and give one concrete piece of guidance for how to approach today/tomorrow's training. Do not invent any numbers not given below. Do not give medical advice.\n\n${facts}`;
+  return `Write a short ${mode} training brief (2-4 sentences, plain text, no headers or bullet points) for an athlete. They can already see the raw numbers elsewhere on their dashboard, so do NOT restate figures like "your HRV is X" or "you slept Y hours" — instead, interpret what the numbers actually mean and give one concrete, honest recommendation for today/tomorrow's training. Tone: calibrated and matter-of-fact. No exaggerated caution or doom-y hedging, and no hollow cheerleading or empty positivity — just an honest, grounded read of what the data actually suggests, the way a good coach who respects your intelligence would put it. Base every claim strictly on the data below — never invent anything not given.\n\n${facts}`;
 }
 
 async function runAiBrief(latest){
