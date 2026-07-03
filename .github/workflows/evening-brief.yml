@@ -2,8 +2,6 @@ name: Evening brief
 
 on:
   schedule:
-    # 19:00 UTC = 21:00 in Berlin during CEST (summer).
-    # Shift to 20:00 UTC when Europe/Berlin switches back to CET (winter).
     - cron: "0 19 * * *"
   workflow_dispatch: {}
 
@@ -36,10 +34,10 @@ jobs:
           git add docs/data/latest.json docs/data/history.json
           git diff --cached --quiet || git commit -m "Evening brief $(date -u +%Y-%m-%d)"
           git push
-          - name: Publish dashboard
+
+      - name: Publish dashboard
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           publish_branch: gh-pages
-
