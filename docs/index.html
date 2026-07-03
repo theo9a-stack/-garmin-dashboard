@@ -184,8 +184,10 @@ async function main(){
   const recovery = today.recovery || {score:0, band:'moderate'};
   const load = today.load || {};
 
-  const briefText = latest.evening_brief || latest.morning_brief || '';
-  const briefTag = latest.evening_brief ? 'Evening brief' : 'Morning brief';
+  const briefText = latest.last_brief || latest.evening_brief || latest.morning_brief || '';
+  const briefTag = latest.last_mode
+    ? (latest.last_mode === 'morning' ? 'Morning brief' : 'Evening brief')
+    : (latest.evening_brief ? 'Evening brief' : 'Morning brief');
 
   const markerPct = loadMarkerPosition(load.acwr);
 
