@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://js.puter.com/v2/"></script>
 <style>
   :root{
     --bg:#14181C;
@@ -137,7 +138,6 @@ function polarToXY(cx, cy, r, angleDeg){
 }
 
 function buildGauge(score, band){
-  // gauge sweeps 220deg, from -110 to +110 around bottom-anchored dial
   const startAngle = -125, endAngle = 125;
   const angle = startAngle + (score/100) * (endAngle-startAngle);
   const cx=90, cy=100, r=78;
@@ -161,7 +161,6 @@ function buildGauge(score, band){
 }
 
 function loadMarkerPosition(acwr){
-  // map acwr 0..2 onto 0%..100% of the bar
   const clamped = Math.max(0, Math.min(2, acwr ?? 1));
   return (clamped/2)*100;
 }
@@ -234,6 +233,51 @@ async function main(){
 
   drawTrend(history);
   drawBriefLog(history);
+  tryAiBrief(latest);
+}
+
+function buildFactsPrompt(latest){
+  const today = latest.today || {};
+  const recovery = today.recovery || {};
+  const load = today.load || {};
+  const mode = latest.last_mode === 'morning' ? 'morning' : 'evening';
+  const acts = today.activities || [];
+  const actDesc = acts.length
+    ? acts.map(a => `${a.name || a.type} — ${a.duration_min} min` + (a.avg_hr ? ` @ ${a.avg_hr} bpm avg` : '')).join('; ')
+    : 'no logged activity';
+
+  const facts = `Mode: ${mode} brief
+Recovery score: ${recovery.score}/100 (${recovery.band}), based on: ${(recovery.components_used||[]).join(', ') || 'no data'}
+Training load: ACWR ${load.acwr} (${load.band}), today's TRIMP ${load.daily_trimp}, 7-day avg ${load.acute_7d}, 28-day avg ${load.chronic_28d}
+Resting HR: ${today.resting_hr} bpm
+HRV: ${today.hrv_avg_ms} ms (device may not support this)
+Sleep score: ${today.sleep_score} over ${today.sleep_duration_h}h
+Body battery: peak ${today.body_battery_high}, low ${today.body_battery_low}
+Steps: ${today.steps}
+Today's activities: ${actDesc}`;
+
+  return `Write a short ${mode} training brief (3-5 sentences, plain text, no headers or bullet points) for an athlete based only on the numbers below. Be direct and specific, reference the actual figures, and give one concrete piece of guidance for how to approach today/tomorrow's training. Do not invent any numbers not given below. Do not give medical advice.\n\n${facts}`;
+}
+
+async function tryAiBrief(latest){
+  if (typeof puter === 'undefined') return;
+  const h1 = document.querySelector('.hero-text h1');
+  const eyebrow = document.querySelector('.hero-text .eyebrow');
+  if (!h1) return;
+
+  try {
+    const prompt = buildFactsPrompt(latest);
+    const response = await puter.ai.chat(prompt, { model: 'claude-sonnet-5' });
+    const text = (response && response.message && response.message.content && response.message.content[0])
+      ? response.message.content[0].text
+      : (typeof response === 'string' ? response : null);
+    if (text && text.trim()) {
+      h1.textContent = text.trim();
+      if (eyebrow) eyebrow.textContent = eyebrow.textContent + ' · AI generated';
+    }
+  } catch (e) {
+    console.warn('AI brief unavailable, showing template text instead.', e);
+  }
 }
 
 function drawTrend(history){
