@@ -259,15 +259,7 @@ Today's activities: ${actDesc}`;
   return `Write a short ${mode} training brief (3-5 sentences, plain text, no headers or bullet points) for an athlete based only on the numbers below. Be direct and specific, reference the actual figures, and give one concrete piece of guidance for how to approach today/tomorrow's training. Do not invent any numbers not given below. Do not give medical advice.\n\n${facts}`;
 }
 
-async function tryAiBrief(latest){
-  if (typeof puter === 'undefined') return;
-  const h1 = document.querySelector('.hero-text h1');
-  const eyebrow = document.querySelector('.hero-text .eyebrow');
-  if (!h1) return;
-
-  try {
-    const prompt = buildFactsPrompt(latest);
-    async function runAiBrief(latest){
+async function runAiBrief(latest){
   const h1 = document.querySelector('.hero-text h1');
   const eyebrow = document.querySelector('.hero-text .eyebrow');
   const btn = document.getElementById('aiBriefBtn');
