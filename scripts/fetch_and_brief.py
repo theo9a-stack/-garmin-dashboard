@@ -64,7 +64,7 @@ def restore_tokens_from_env() -> None:
         return
     raw = base64.b64decode(encoded)
     with tarfile.open(fileobj=io.BytesIO(raw), mode="r:gz") as tar:
-        tar.extractall(Path.home())
+        tar.extractall(Path.home(), filter="data")
 
 
 def login() -> Garmin:
@@ -225,6 +225,7 @@ def compute_recovery_score(today: dict, history: list[dict]) -> dict:
         "components_used": sorted(contributions.keys()),
     }
 
+
 # --------------------------------------------------------------------------
 # Custom training load (Banister TRIMP + ACWR)
 # --------------------------------------------------------------------------
@@ -289,6 +290,7 @@ RECOVERY_TEXT = {
     "ready": "Recovery looks solid. Nothing is holding you back today.",
     "moderate": "Recovery is middling. Not a red flag, but don't be surprised if things feel average.",
     "compromised": "Recovery markers are down versus your recent baseline. Your body is asking for an easier day.",
+    "no data": "No recovery data available yet today.",
 }
 
 LOAD_TEXT = {
@@ -303,13 +305,7 @@ LOAD_TEXT = {
 
 def build_morning_brief(today: dict, recovery: dict, load: dict) -> str:
     lines = [
-        f"Recovery: {recovery['score']}/100 ({recovery['band']}). {RECOVERY_TEXT = {
-    "primed": "Your body is well recovered — HRV and resting HR are both trending favorably.",
-    "ready": "Recovery looks solid. Nothing is holding you back today.",
-    "moderate": "Recovery is middling. Not a red flag, but don't be surprised if things feel average.",
-    "compromised": "Recovery markers are down versus your recent baseline. Your body is asking for an easier day.",
-    "no data": "No recovery data available yet today.",
-}}",
+        f"Recovery: {recovery['score']}/100 ({recovery['band']}). {RECOVERY_TEXT[recovery['band']]}",
         f"Training load (ACWR {load['acwr']}): {load['band']}. {LOAD_TEXT[load['band']]}",
     ]
     if today.get("sleep_score") is not None:
@@ -372,14 +368,12 @@ def main() -> None:
     )
 
     latest = json.loads(LATEST_FILE.read_text()) if LATEST_FILE.exists() else {}
-
     latest["date"] = today_str
     latest["today"] = today_record
     latest[f"{args.mode}_brief"] = brief_text
     latest["last_mode"] = args.mode
     latest["last_brief"] = brief_text
     latest["updated_at"] = datetime.now().isoformat(timespec="minutes")
-
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     LATEST_FILE.write_text(json.dumps(latest, indent=2))
 
