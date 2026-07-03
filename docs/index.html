@@ -267,17 +267,60 @@ async function tryAiBrief(latest){
 
   try {
     const prompt = buildFactsPrompt(latest);
+    async function runAiBrief(latest){
+  const h1 = document.querySelector('.hero-text h1');
+  const eyebrow = document.querySelector('.hero-text .eyebrow');
+  const btn = document.getElementById('aiBriefBtn');
+  if (!h1) return;
+
+  if (btn) { btn.disabled = true; btn.textContent = 'Generating…'; }
+
+  try {
+    const prompt = buildFactsPrompt(latest);
     const response = await puter.ai.chat(prompt, { model: 'claude-sonnet-5' });
     const text = (response && response.message && response.message.content && response.message.content[0])
       ? response.message.content[0].text
       : (typeof response === 'string' ? response : null);
     if (text && text.trim()) {
       h1.textContent = text.trim();
-      if (eyebrow) eyebrow.textContent = eyebrow.textContent + ' · AI generated';
+      if (eyebrow && !eyebrow.textContent.includes('AI generated')) {
+        eyebrow.textContent = eyebrow.textContent + ' · AI generated';
+      }
+      if (btn) btn.remove();
+    } else {
+      throw new Error('Empty response from puter.ai.chat');
     }
   } catch (e) {
     console.warn('AI brief unavailable, showing template text instead.', e);
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'AI brief failed — retry';
+      btn.title = e && e.message ? e.message : String(e);
+    }
   }
+}
+
+function tryAiBrief(latest){
+  if (typeof puter === 'undefined') return;
+  const eyebrow = document.querySelector('.hero-text .eyebrow');
+  if (!eyebrow) return;
+
+  // puter.ai.chat() needs a signed-in Puter user. The FIRST sign-in opens a
+  // popup, and browsers only allow that from a direct click — never from
+  // code running automatically on page load. So: if already signed in
+  // (true on every visit after the first), run automatically. Otherwise,
+  // show a button so the popup has a click to attach to.
+  if (puter.auth && puter.auth.isSignedIn && puter.auth.isSignedIn()) {
+    runAiBrief(latest);
+    return;
+  }
+
+  const btn = document.createElement('button');
+  btn.id = 'aiBriefBtn';
+  btn.textContent = 'Generate AI brief';
+  btn.style.cssText = 'margin-top:8px;padding:6px 12px;font:inherit;cursor:pointer;';
+  btn.addEventListener('click', () => runAiBrief(latest));
+  eyebrow.after(btn);
 }
 
 function drawTrend(history){
