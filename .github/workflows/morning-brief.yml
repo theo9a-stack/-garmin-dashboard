@@ -2,8 +2,6 @@ name: Morning brief
 
 on:
   schedule:
-    # 05:30 UTC = 07:30 in Berlin during CEST (summer).
-    # Shift to 06:30 UTC when Europe/Berlin switches back to CET (winter).
     - cron: "30 5 * * *"
   workflow_dispatch: {}
 
@@ -36,7 +34,8 @@ jobs:
           git add docs/data/latest.json docs/data/history.json
           git diff --cached --quiet || git commit -m "Morning brief $(date -u +%Y-%m-%d)"
           git push
-          - name: Publish dashboard
+
+      - name: Publish dashboard
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
