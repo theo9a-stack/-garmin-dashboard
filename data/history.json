@@ -1,0 +1,63 @@
+[
+  {
+    "date": "2026-07-02",
+    "resting_hr": 45,
+    "hrv_avg_ms": null,
+    "hrv_status": null,
+    "sleep_score": 83,
+    "sleep_duration_h": 7.89,
+    "body_battery_wake": 22,
+    "body_battery_high": 95,
+    "body_battery_low": 14,
+    "steps": 17422,
+    "stress_avg": 29,
+    "activities": [
+      {
+        "name": "4x4",
+        "type": "running",
+        "duration_min": 28.1,
+        "avg_hr": 149.0
+      }
+    ],
+    "recovery": {
+      "score": 51,
+      "band": "moderate",
+      "z_hrv": 0.0,
+      "z_rhr": -0.0
+    },
+    "load": {
+      "daily_trimp": 51.1,
+      "acute_7d": 51.1,
+      "chronic_28d": 51.1,
+      "acwr": 1.0,
+      "band": "sweet spot"
+    }
+  },
+  {
+    "date": "2026-07-03",
+    "resting_hr": 49,
+    "hrv_avg_ms": null,
+    "hrv_status": null,
+    "sleep_score": 77,
+    "sleep_duration_h": 7.02,
+    "body_battery_wake": 10,
+    "body_battery_high": 83,
+    "body_battery_low": 10,
+    "steps": 2478,
+    "stress_avg": 21,
+    "activities": [],
+    "recovery": {
+      "score": 47,
+      "band": "moderate",
+      "z_hrv": 0.0,
+      "z_rhr": -0.0
+    },
+    "load": {
+      "daily_trimp": 0.0,
+      "acute_7d": 25.6,
+      "chronic_28d": 25.6,
+      "acwr": 1.0,
+      "band": "sweet spot"
+    }
+  }
+]

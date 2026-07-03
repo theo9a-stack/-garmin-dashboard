@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Log — Recovery &amp; Load</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#14181C;
+    --surface:#1B2026;
+    --surface-2:#20262D;
+    --line:#2C333B;
+    --brass:#C89B3C;
+    --sage:#7C9A72;
+    --rust:#B5533C;
+    --parchment:#EDE6D6;
+    --muted:#8A9099;
+    --font-display:'Spectral', serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at top left, rgba(200,155,60,0.06), transparent 45%),
+      var(--bg);
+    color:var(--parchment);
+    font-family:var(--font-body);
+    padding:32px 20px 80px;
+    min-height:100vh;
+  }
+  .wrap{max-width:920px;margin:0 auto;}
+
+  header.top{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;margin-bottom:28px;
+    flex-wrap:wrap;gap:8px;
+  }
+  .brandmark{
+    font-family:var(--font-mono);
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--brass);
+  }
+  .datestamp{font-family:var(--font-mono);font-size:12px;color:var(--muted);}
+
+  .hero{
+    display:grid;grid-template-columns: 220px 1fr;gap:36px;
+    align-items:center;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:28px;
+    margin-bottom:24px;
+  }
+  @media (max-width:640px){ .hero{grid-template-columns:1fr;} }
+
+  .gauge-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .gauge-label{font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+  .gauge-score{font-family:var(--font-display);font-size:15px;color:var(--parchment);margin-top:-6px;}
+  .gauge-band{font-family:var(--font-mono);font-size:12px;color:var(--brass);text-transform:uppercase;letter-spacing:0.08em;}
+
+  .hero-text .eyebrow{
+    font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--sage);margin-bottom:8px;
+  }
+  .hero-text h1{
+    font-family:var(--font-display);font-weight:500;font-size:26px;
+    line-height:1.35;margin:0 0 6px;color:var(--parchment);
+  }
+  .hero-text p.updated{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin:0;}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
+  @media (max-width:720px){ .grid{grid-template-columns:1fr 1fr;} }
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:4px;
+    padding:18px 20px;
+  }
+  .card .k{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .card .v{font-family:var(--font-mono);font-size:26px;color:var(--parchment);}
+  .card .v span.unit{font-size:13px;color:var(--muted);margin-left:4px;}
+
+  .load-bar-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:4px;
+    padding:20px 22px;margin-bottom:24px;
+  }
+  .load-bar-card .k{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+  .load-track{position:relative;height:10px;border-radius:6px;
+    background:linear-gradient(90deg, var(--rust) 0%, var(--rust) 15%, var(--sage) 30%, var(--sage) 65%, var(--rust) 78%, var(--rust) 100%);
+    margin:10px 0 8px;
+  }
+  .load-marker{position:absolute;top:-5px;width:2px;height:20px;background:var(--parchment);}
+  .load-scale{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;color:var(--muted);}
+  .load-readout{font-family:var(--font-mono);font-size:20px;color:var(--parchment);margin-top:14px;}
+  .load-readout .band{color:var(--brass);text-transform:uppercase;font-size:12px;letter-spacing:0.06em;margin-left:10px;}
+
+  .chart-card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:20px 22px;margin-bottom:24px;}
+  .chart-card .k{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+
+  .brief-log{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:22px;}
+  .brief-log h2{font-family:var(--font-display);font-size:16px;font-weight:500;margin:0 0 14px;color:var(--parchment);}
+  .brief-entry{border-left:2px solid var(--line);padding:2px 0 16px 16px;margin-left:4px;position:relative;}
+  .brief-entry:last-child{padding-bottom:0;}
+  .brief-entry::before{content:'';position:absolute;left:-5px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--brass);}
+  .brief-entry .tag{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sage);margin-bottom:4px;}
+  .brief-entry p{margin:0;font-size:14px;line-height:1.6;color:var(--parchment);}
+
+  .empty{font-family:var(--font-mono);font-size:13px;color:var(--muted);text-align:center;padding:60px 20px;}
+  footer{margin-top:36px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.06em;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brandmark">Field Log · Recovery &amp; Load</div>
+    <div class="datestamp" id="datestamp">—</div>
+  </header>
+
+  <div id="content">
+    <div class="empty">Loading today's readout…</div>
+  </div>
+
+  <footer>recalculated locally from raw Garmin Connect data · not a medical device</footer>
+</div>
+
+<script>
+const RECOVERY_COLORS = { primed:'#7C9A72', ready:'#9FB894', moderate:'#C89B3C', compromised:'#B5533C' };
+
+function polarToXY(cx, cy, r, angleDeg){
+  const a = (angleDeg - 90) * Math.PI / 180;
+  return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+}
+
+function buildGauge(score, band){
+  // gauge sweeps 220deg, from -110 to +110 around bottom-anchored dial
+  const startAngle = -125, endAngle = 125;
+  const angle = startAngle + (score/100) * (endAngle-startAngle);
+  const cx=90, cy=100, r=78;
+  const ticks = [];
+  for(let v=0; v<=100; v+=10){
+    const a = startAngle + (v/100)*(endAngle-startAngle);
+    const [x1,y1] = polarToXY(cx,cy,r,a);
+    const [x2,y2] = polarToXY(cx,cy,r-8,a);
+    ticks.push(`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#3A424B" stroke-width="2"/>`);
+  }
+  const [nx,ny] = polarToXY(cx,cy,r-16,angle);
+  const color = RECOVERY_COLORS[band] || '#C89B3C';
+  return `
+  <svg width="180" height="150" viewBox="0 0 180 150">
+    <path d="M ${polarToXY(cx,cy,r,startAngle).join(',')} A ${r} ${r} 0 1 1 ${polarToXY(cx,cy,r,endAngle).join(',')}"
+      fill="none" stroke="#2C333B" stroke-width="3"/>
+    ${ticks.join('')}
+    <line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="${color}" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="${cx}" cy="${cy}" r="5" fill="${color}"/>
+  </svg>`;
+}
+
+function loadMarkerPosition(acwr){
+  // map acwr 0..2 onto 0%..100% of the bar
+  const clamped = Math.max(0, Math.min(2, acwr ?? 1));
+  return (clamped/2)*100;
+}
+
+async function main(){
+  let latest, history;
+  try{
+    [latest, history] = await Promise.all([
+      fetch('data/latest.json').then(r=>r.json()),
+      fetch('data/history.json').then(r=>r.json())
+    ]);
+  }catch(e){
+    document.getElementById('content').innerHTML = '<div class="empty">No data yet — waiting on the first scheduled run.</div>';
+    return;
+  }
+
+  document.getElementById('datestamp').textContent = latest.date + ' · updated ' + (latest.updated_at||'').replace('T',' ');
+
+  const today = latest.today || {};
+  const recovery = today.recovery || {score:0, band:'moderate'};
+  const load = today.load || {};
+
+  const briefText = latest.last_brief || latest.evening_brief || latest.morning_brief || '';
+  const briefTag = latest.last_mode
+    ? (latest.last_mode === 'morning' ? 'Morning brief' : 'Evening brief')
+    : (latest.evening_brief ? 'Evening brief' : 'Morning brief');
+
+  const markerPct = loadMarkerPosition(load.acwr);
+
+  document.getElementById('content').innerHTML = `
+    <div class="hero">
+      <div class="gauge-wrap">
+        ${buildGauge(recovery.score, recovery.band)}
+        <div class="gauge-score">${recovery.score}<span style="color:var(--muted);font-size:12px;">/100</span></div>
+        <div class="gauge-band">${recovery.band}</div>
+      </div>
+      <div class="hero-text">
+        <div class="eyebrow">${briefTag}</div>
+        <h1>${briefText}</h1>
+        <p class="updated">recovery recalculated from HRV, resting HR, sleep, body battery vs your 30-day baseline</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card"><div class="k">Resting HR</div><div class="v">${today.resting_hr ?? '—'}<span class="unit">bpm</span></div></div>
+      <div class="card"><div class="k">HRV (overnight)</div><div class="v">${today.hrv_avg_ms ?? '—'}<span class="unit">ms</span></div></div>
+      <div class="card"><div class="k">Sleep score</div><div class="v">${today.sleep_score ?? '—'}<span class="unit">/100</span></div></div>
+      <div class="card"><div class="k">Sleep duration</div><div class="v">${today.sleep_duration_h ?? '—'}<span class="unit">h</span></div></div>
+      <div class="card"><div class="k">Body battery @ wake</div><div class="v">${today.body_battery_wake ?? '—'}</div></div>
+      <div class="card"><div class="k">Steps</div><div class="v">${today.steps ?? '—'}</div></div>
+    </div>
+
+    <div class="load-bar-card">
+      <div class="k">Training load risk (7d : 28d ratio)</div>
+      <div class="load-track"><div class="load-marker" style="left:${markerPct}%"></div></div>
+      <div class="load-scale"><span>0.0 undertrain</span><span>0.8–1.3 sweet spot</span><span>2.0 spike risk</span></div>
+      <div class="load-readout">ACWR ${load.acwr ?? '—'} <span class="band">${load.band ?? ''}</span></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="k">14-day trend</div>
+      <canvas id="trendChart" height="90"></canvas>
+    </div>
+
+    <div class="brief-log">
+      <h2>Recent briefs</h2>
+      <div id="briefLog"></div>
+    </div>
+  `;
+
+  drawTrend(history);
+  drawBriefLog(history);
+}
+
+function drawTrend(history){
+  const recent = history.slice(-14);
+  const labels = recent.map(r => r.date.slice(5));
+  const recoveryData = recent.map(r => (r.recovery||{}).score ?? null);
+  const loadData = recent.map(r => (r.load||{}).daily_trimp ?? 0);
+
+  new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Recovery score',
+          data: recoveryData,
+          borderColor: '#7C9A72',
+          backgroundColor: 'transparent',
+          yAxisID: 'y',
+          tension: 0.3,
+          pointRadius: 2,
+        },
+        {
+          label: 'Daily load (TRIMP)',
+          data: loadData,
+          borderColor: '#C89B3C',
+          backgroundColor: 'rgba(200,155,60,0.08)',
+          fill: true,
+          yAxisID: 'y1',
+          tension: 0.3,
+          pointRadius: 2,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { labels: { color: '#8A9099', font: { family: 'IBM Plex Mono', size: 10 } } }
+      },
+      scales: {
+        x: { ticks: { color: '#8A9099', font: { family: 'IBM Plex Mono', size: 10 } }, grid: { color: '#2C333B' } },
+        y: { position: 'left', min:0, max:100, ticks: { color: '#8A9099', font: { size: 10 } }, grid: { color: '#2C333B' } },
+        y1: { position: 'right', min:0, ticks: { color: '#8A9099', font: { size: 10 } }, grid: { display:false } }
+      }
+    }
+  });
+}
+
+function drawBriefLog(history){
+  const el = document.getElementById('briefLog');
+  const recent = history.slice(-6).reverse();
+  el.innerHTML = recent.map(r => {
+    const rec = r.recovery || {};
+    const load = r.load || {};
+    return `<div class="brief-entry">
+      <div class="tag">${r.date}</div>
+      <p>Recovery ${rec.score ?? '—'} (${rec.band ?? '—'}) · ACWR ${load.acwr ?? '—'} (${load.band ?? '—'})</p>
+    </div>`;
+  }).join('') || '<div class="empty">No history yet.</div>';
+}
+
+main();
+</script>
+</body>
+</html>
