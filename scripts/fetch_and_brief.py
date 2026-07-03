@@ -179,18 +179,35 @@ def compute_recovery_score(today: dict, history: list[dict]) -> dict:
     hrv_series = [r.get("hrv_avg_ms") for r in prior]
     rhr_series = [r.get("resting_hr") for r in prior]
 
-    z_hrv = max(-2.0, min(2.0, zscore(today.get("hrv_avg_ms"), hrv_series)))
-    z_rhr = max(-2.0, min(2.0, -zscore(today.get("resting_hr"), rhr_series)))
+    # Base weights when every metric is available (sums to 50, giving a
+    # possible +/-50 swing around the 50 midpoint -> full 0-100 range).
+    weights_base = {"hrv": 15, "rhr": 15, "sleep": 10, "battery": 10}
+    contributions: dict[str, float] = {}
 
-    sleep_score = today.get("sleep_score")
-    sleep_component = ((sleep_score - 50) / 50) if sleep_score is not None else 0.0
-    sleep_component = max(-1.0, min(1.0, sleep_component))
+    if today.get("hrv_avg_ms") is not None:
+        z = max(-2.0, min(2.0, zscore(today.get("hrv_avg_ms"), hrv_series)))
+        contributions["hrv"] = z / 2.0  # normalize to -1..1
 
-    battery = today.get("body_battery_wake")
-    battery_component = ((battery - 50) / 50) if battery is not None else 0.0
-    battery_component = max(-1.0, min(1.0, battery_component))
+    if today.get("resting_hr") is not None:
+        z = max(-2.0, min(2.0, -zscore(today.get("resting_hr"), rhr_series)))
+        contributions["rhr"] = z / 2.0
 
-    score = 50 + 15 * z_hrv + 15 * z_rhr + 10 * sleep_component + 10 * battery_component
+    if today.get("sleep_score") is not None:
+        contributions["sleep"] = max(-1.0, min(1.0, (today["sleep_score"] - 50) / 50))
+
+    if today.get("body_battery_wake") is not None:
+        contributions["battery"] = max(-1.0, min(1.0, (today["body_battery_wake"] - 50) / 50))
+
+    if not contributions:
+        return {"score": None, "band": "no data", "components_used": []}
+
+    # Redistribute weight: whatever's missing doesn't silently count as
+    # neutral, its share gets reallocated across whatever data IS present.
+    total_available_weight = sum(weights_base[k] for k in contributions)
+    score = 50.0
+    for key, contribution in contributions.items():
+        adjusted_weight = weights_base[key] / total_available_weight * 50
+        score += adjusted_weight * contribution
     score = max(0, min(100, round(score)))
 
     if score >= 75:
@@ -202,8 +219,11 @@ def compute_recovery_score(today: dict, history: list[dict]) -> dict:
     else:
         band = "compromised"
 
-    return {"score": score, "band": band, "z_hrv": round(z_hrv, 2), "z_rhr": round(z_rhr, 2)}
-
+    return {
+        "score": score,
+        "band": band,
+        "components_used": sorted(contributions.keys()),
+    }
 
 # --------------------------------------------------------------------------
 # Custom training load (Banister TRIMP + ACWR)
