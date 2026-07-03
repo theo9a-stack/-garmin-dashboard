@@ -47,10 +47,13 @@
     "stress_avg": 21,
     "activities": [],
     "recovery": {
-      "score": 47,
+      "score": 46,
       "band": "moderate",
-      "z_hrv": 0.0,
-      "z_rhr": -0.0
+      "components_used": [
+        "battery",
+        "rhr",
+        "sleep"
+      ]
     },
     "load": {
       "daily_trimp": 0.0,
