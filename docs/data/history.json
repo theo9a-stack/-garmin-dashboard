@@ -47,8 +47,8 @@
     "stress_avg": 23,
     "activities": [],
     "recovery": {
-      "score": 46,
-      "band": "moderate",
+      "score": 67,
+      "band": "ready",
       "components_used": [
         "battery",
         "rhr",
