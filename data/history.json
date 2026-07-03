@@ -42,9 +42,9 @@
     "sleep_duration_h": 7.02,
     "body_battery_wake": 10,
     "body_battery_high": 83,
-    "body_battery_low": 10,
-    "steps": 7200,
-    "stress_avg": 28,
+    "body_battery_low": 9,
+    "steps": 16564,
+    "stress_avg": 32,
     "activities": [],
     "recovery": {
       "score": 67,
