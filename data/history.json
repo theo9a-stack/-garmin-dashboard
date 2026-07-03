@@ -43,8 +43,8 @@
     "body_battery_wake": 10,
     "body_battery_high": 83,
     "body_battery_low": 10,
-    "steps": 5335,
-    "stress_avg": 27,
+    "steps": 7200,
+    "stress_avg": 28,
     "activities": [],
     "recovery": {
       "score": 67,
