@@ -346,10 +346,14 @@ def main() -> None:
     )
 
     latest = json.loads(LATEST_FILE.read_text()) if LATEST_FILE.exists() else {}
+
     latest["date"] = today_str
     latest["today"] = today_record
     latest[f"{args.mode}_brief"] = brief_text
+    latest["last_mode"] = args.mode
+    latest["last_brief"] = brief_text
     latest["updated_at"] = datetime.now().isoformat(timespec="minutes")
+
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     LATEST_FILE.write_text(json.dumps(latest, indent=2))
 
