@@ -163,6 +163,13 @@ function buildGauge(score, band){
 function loadMarkerPosition(acwr){
   const clamped = Math.max(0, Math.min(2, acwr ?? 1));
   return (clamped/2)*100;
+
+function sleepPct(today, key){
+  const total = (today.sleep_deep_min||0) + (today.sleep_rem_min||0) + (today.sleep_light_min||0) + (today.sleep_awake_min||0);
+  if (!total) return 0;
+  return Math.round(((today[key]||0) / total) * 100);
+}
+  
 }
 
 async function main(){
