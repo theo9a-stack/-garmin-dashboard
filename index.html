@@ -3,122 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Field Log — Recovery &amp; Load</title>
+<title>Recovery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://js.puter.com/v2/"></script>
 <style>
   :root{
-    --bg:#14181C;
-    --surface:#1B2026;
-    --surface-2:#20262D;
-    --line:#2C333B;
-    --brass:#C89B3C;
-    --sage:#7C9A72;
-    --rust:#B5533C;
-    --parchment:#EDE6D6;
-    --muted:#8A9099;
-    --font-display:'Spectral', serif;
-    --font-mono:'IBM Plex Mono', monospace;
-    --font-body:'Inter', sans-serif;
+    --bg:#08090B;
+    --hairline:rgba(255,255,255,0.09);
+    --hairline-soft:rgba(255,255,255,0.05);
+    --text:#F2F1EE;
+    --muted:#71767D;
+    --muted-2:#4B4F54;
+    --primed:#3DE8A0;
+    --ready:#8FE3B8;
+    --moderate:#FFC44D;
+    --compromised:#FF6259;
+    --deep:#5B7FFF;
+    --rem:#B98CFF;
+    --light:#4FC7E8;
+    --awake:#3A3E44;
+    --font: 'Inter', -apple-system, sans-serif;
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  html,body{margin:0;padding:0;background:var(--bg);}
   body{
-    background:
-      radial-gradient(ellipse at top left, rgba(200,155,60,0.06), transparent 45%),
-      var(--bg);
-    color:var(--parchment);
-    font-family:var(--font-body);
-    padding:32px 20px 80px;
+    color:var(--text);
+    font-family:var(--font);
+    padding:28px 20px 100px;
     min-height:100vh;
+    -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:920px;margin:0 auto;}
+  .wrap{max-width:640px;margin:0 auto;}
 
   header.top{
-    display:flex;justify-content:space-between;align-items:baseline;
-    border-bottom:1px solid var(--line);
-    padding-bottom:18px;margin-bottom:28px;
-    flex-wrap:wrap;gap:8px;
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:8px;
   }
-  .brandmark{
-    font-family:var(--font-mono);
-    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
-    color:var(--brass);
+  .brandmark{font-size:13px;font-weight:600;letter-spacing:0.02em;color:var(--muted);}
+  .datestamp{font-size:12px;color:var(--muted-2);font-variant-numeric:tabular-nums;}
+
+  .hero{text-align:center;padding:36px 0 28px;}
+  .ring-wrap{position:relative;display:inline-block;}
+  .ring-score{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    font-size:56px;font-weight:800;letter-spacing:-0.03em;
+    font-variant-numeric:tabular-nums;line-height:1;
   }
-  .datestamp{font-family:var(--font-mono);font-size:12px;color:var(--muted);}
-
-  .hero{
-    display:grid;grid-template-columns: 220px 1fr;gap:36px;
-    align-items:center;
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:4px;
-    padding:28px;
-    margin-bottom:24px;
+  .ring-score span{font-size:18px;font-weight:600;color:var(--muted);margin-left:2px;}
+  .ring-label{
+    margin-top:14px;font-size:13px;font-weight:600;text-transform:uppercase;
+    letter-spacing:0.08em;
   }
-  @media (max-width:640px){ .hero{grid-template-columns:1fr;} }
 
-  .gauge-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;}
-  .gauge-label{font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
-  .gauge-score{font-family:var(--font-display);font-size:15px;color:var(--parchment);margin-top:-6px;}
-  .gauge-band{font-family:var(--font-mono);font-size:12px;color:var(--brass);text-transform:uppercase;letter-spacing:0.08em;}
-
-  .hero-text .eyebrow{
-    font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;
-    text-transform:uppercase;color:var(--sage);margin-bottom:8px;
+  .insight{
+    max-width:480px;margin:22px auto 0;
+    font-size:17px;line-height:1.55;color:#D8D6D1;font-weight:400;
   }
-  .hero-text h1{
-    font-family:var(--font-display);font-weight:500;font-size:26px;
-    line-height:1.35;margin:0 0 6px;color:var(--parchment);
+  .insight-tag{
+    font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;
+    color:var(--muted-2);margin-bottom:10px;
   }
-  .hero-text p.updated{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin:0;}
-
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
-  @media (max-width:720px){ .grid{grid-template-columns:1fr 1fr;} }
-  .card{
-    background:var(--surface);border:1px solid var(--line);border-radius:4px;
-    padding:18px 20px;
+  #aiBriefBtn{
+    margin-top:16px;padding:9px 18px;border-radius:100px;border:1px solid var(--hairline);
+    background:transparent;color:var(--text);font:inherit;font-size:13px;font-weight:600;
+    cursor:pointer;
   }
-  .card .k{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-  .card .v{font-family:var(--font-mono);font-size:26px;color:var(--parchment);}
-  .card .v span.unit{font-size:13px;color:var(--muted);margin-left:4px;}
+  #aiBriefBtn:hover{border-color:var(--muted);}
 
-  .load-bar-card{
-    background:var(--surface);border:1px solid var(--line);border-radius:4px;
-    padding:20px 22px;margin-bottom:24px;
+  .section{border-top:1px solid var(--hairline);padding:22px 0;}
+  .section-label{
+    font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;
+    color:var(--muted-2);margin-bottom:16px;
   }
-  .load-bar-card .k{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
-  .load-track{position:relative;height:10px;border-radius:6px;
-    background:linear-gradient(90deg, var(--rust) 0%, var(--rust) 15%, var(--sage) 30%, var(--sage) 65%, var(--rust) 78%, var(--rust) 100%);
-    margin:10px 0 8px;
+
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);row-gap:20px;}
+  .stat{text-align:left;}
+  .stat .v{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-0.01em;}
+  .stat .v .unit{font-size:12px;font-weight:500;color:var(--muted);margin-left:3px;}
+  .stat .k{font-size:12px;color:var(--muted);margin-top:3px;}
+
+  .segbar{display:flex;height:8px;border-radius:5px;overflow:hidden;background:var(--hairline-soft);margin-bottom:14px;}
+  .segbar div{height:100%;}
+  .seg-legend{display:flex;gap:18px;flex-wrap:wrap;}
+  .seg-legend .item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);}
+  .seg-legend .dot{width:8px;height:8px;border-radius:50%;}
+
+  .load-track{position:relative;height:8px;border-radius:5px;margin-bottom:12px;
+    background:linear-gradient(90deg, var(--compromised) 0%, var(--compromised) 15%, var(--primed) 30%, var(--primed) 65%, var(--compromised) 78%, var(--compromised) 100%);
+    opacity:0.85;
   }
-  .load-marker{position:absolute;top:-5px;width:2px;height:20px;background:var(--parchment);}
-  .load-scale{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;color:var(--muted);}
-  .load-readout{font-family:var(--font-mono);font-size:20px;color:var(--parchment);margin-top:14px;}
-  .load-readout .band{color:var(--brass);text-transform:uppercase;font-size:12px;letter-spacing:0.06em;margin-left:10px;}
+  .load-marker{position:absolute;top:-4px;width:2px;height:16px;background:var(--text);border-radius:1px;}
+  .load-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted-2);margin-bottom:14px;}
+  .load-readout{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;}
+  .load-readout .band{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);margin-left:10px;}
 
-  .chart-card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:20px 22px;margin-bottom:24px;}
-  .chart-card .k{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+  canvas{max-width:100%;}
 
-  .brief-log{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:22px;}
-  .brief-log h2{font-family:var(--font-display);font-size:16px;font-weight:500;margin:0 0 14px;color:var(--parchment);}
-  .brief-entry{border-left:2px solid var(--line);padding:2px 0 16px 16px;margin-left:4px;position:relative;}
-  .brief-entry:last-child{padding-bottom:0;}
-  .brief-entry::before{content:'';position:absolute;left:-5px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--brass);}
-  .brief-entry .tag{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sage);margin-bottom:4px;}
-  .brief-entry p{margin:0;font-size:14px;line-height:1.6;color:var(--parchment);}
+  .brief-row{display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--hairline-soft);gap:12px;}
+  .brief-row:last-child{border-bottom:none;}
+  .brief-row .d{font-size:12px;color:var(--muted-2);white-space:nowrap;}
+  .brief-row .s{font-size:13px;color:var(--muted);text-align:right;}
 
-  .empty{font-family:var(--font-mono);font-size:13px;color:var(--muted);text-align:center;padding:60px 20px;}
-  footer{margin-top:36px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.06em;}
+  .empty{font-size:13px;color:var(--muted);text-align:center;padding:80px 20px;}
+  footer{margin-top:30px;text-align:center;font-size:11px;color:var(--muted-2);}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header class="top">
-    <div class="brandmark">Field Log · Recovery &amp; Load</div>
+    <div class="brandmark">Recovery</div>
     <div class="datestamp" id="datestamp">—</div>
   </header>
 
@@ -126,37 +122,23 @@
     <div class="empty">Loading today's readout…</div>
   </div>
 
-  <footer>recalculated locally from raw Garmin Connect data · not a medical device</footer>
+  <footer>recalculated from raw Garmin Connect data · not a medical device</footer>
 </div>
 
 <script>
-const RECOVERY_COLORS = { primed:'#7C9A72', ready:'#9FB894', moderate:'#C89B3C', compromised:'#B5533C' };
+const BAND_COLORS = { primed:'var(--primed)', ready:'var(--ready)', moderate:'var(--moderate)', compromised:'var(--compromised)' };
 
-function polarToXY(cx, cy, r, angleDeg){
-  const a = (angleDeg - 90) * Math.PI / 180;
-  return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
-}
-
-function buildGauge(score, band){
-  const startAngle = -125, endAngle = 125;
-  const angle = startAngle + (score/100) * (endAngle-startAngle);
-  const cx=90, cy=100, r=78;
-  const ticks = [];
-  for(let v=0; v<=100; v+=10){
-    const a = startAngle + (v/100)*(endAngle-startAngle);
-    const [x1,y1] = polarToXY(cx,cy,r,a);
-    const [x2,y2] = polarToXY(cx,cy,r-8,a);
-    ticks.push(`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#3A424B" stroke-width="2"/>`);
-  }
-  const [nx,ny] = polarToXY(cx,cy,r-16,angle);
-  const color = RECOVERY_COLORS[band] || '#C89B3C';
+function buildRing(score, band){
+  const size = 176, stroke = 12, r = (size - stroke) / 2, c = size/2;
+  const circumference = 2 * Math.PI * r;
+  const pct = Math.max(0, Math.min(100, score ?? 0)) / 100;
+  const dash = circumference * pct;
+  const color = BAND_COLORS[band] || 'var(--moderate)';
   return `
-  <svg width="180" height="150" viewBox="0 0 180 150">
-    <path d="M ${polarToXY(cx,cy,r,startAngle).join(',')} A ${r} ${r} 0 1 1 ${polarToXY(cx,cy,r,endAngle).join(',')}"
-      fill="none" stroke="#2C333B" stroke-width="3"/>
-    ${ticks.join('')}
-    <line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="${color}" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="${cx}" cy="${cy}" r="5" fill="${color}"/>
+  <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" style="transform:rotate(-90deg)">
+    <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="var(--hairline)" stroke-width="${stroke}"/>
+    <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${color}" stroke-width="${stroke}"
+      stroke-linecap="round" stroke-dasharray="${dash} ${circumference}"/>
   </svg>`;
 }
 
@@ -183,7 +165,7 @@ async function main(){
     return;
   }
 
-  document.getElementById('datestamp').textContent = latest.date + ' · updated ' + (latest.updated_at||'').replace('T',' ');
+  document.getElementById('datestamp').textContent = (latest.updated_at||'').replace('T',' ');
 
   const today = latest.today || {};
   const recovery = today.recovery || {score:0, band:'moderate'};
@@ -191,60 +173,71 @@ async function main(){
 
   const briefText = latest.last_brief || latest.evening_brief || latest.morning_brief || '';
   const briefTag = latest.last_mode
-    ? (latest.last_mode === 'morning' ? 'Morning brief' : 'Evening brief')
-    : (latest.evening_brief ? 'Evening brief' : 'Morning brief');
+    ? (latest.last_mode === 'morning' ? 'Morning' : 'Evening')
+    : (latest.evening_brief ? 'Evening' : 'Morning');
 
   const markerPct = loadMarkerPosition(load.acwr);
+  const intensityTotal = (today.intensity_minutes_moderate ?? 0) + (today.intensity_minutes_vigorous ?? 0);
 
   document.getElementById('content').innerHTML = `
     <div class="hero">
-      <div class="gauge-wrap">
-        ${buildGauge(recovery.score, recovery.band)}
-        <div class="gauge-score">${recovery.score}<span style="color:var(--muted);font-size:12px;">/100</span></div>
-        <div class="gauge-band">${recovery.band}</div>
+      <div class="ring-wrap">
+        ${buildRing(recovery.score, recovery.band)}
+        <div class="ring-score">${recovery.score ?? '—'}<span>/100</span></div>
       </div>
-      <div class="hero-text">
-        <div class="eyebrow">${briefTag}</div>
-        <h1>${briefText}</h1>
-        <p class="updated">recovery recalculated from HRV, resting HR, sleep, body battery vs your 30-day baseline</p>
-      </div>
-    </div>
+      <div class="ring-label" style="color:${BAND_COLORS[recovery.band]||'var(--moderate)'}">${recovery.band}</div>
 
-    <div class="grid">
-      <div class="card"><div class="k">Resting HR</div><div class="v">${today.resting_hr ?? '—'}<span class="unit">bpm</span></div></div>
-      <div class="card"><div class="k">HRV (overnight)</div><div class="v">${today.hrv_avg_ms ?? '—'}<span class="unit">ms</span></div></div>
-      <div class="card"><div class="k">Sleep score</div><div class="v">${today.sleep_score ?? '—'}<span class="unit">/100</span></div></div>
-      <div class="card"><div class="k">Sleep duration</div><div class="v">${today.sleep_duration_h ?? '—'}<span class="unit">h</span></div></div>
-      <div class="card"><div class="k">Body battery now</div><div class="v">${today.body_battery_current ?? '—'}</div></div>
-      <div class="card"><div class="k">Body battery peak</div><div class="v">${today.body_battery_high ?? '—'}</div></div>
-      <div class="card"><div class="k">Steps</div><div class="v">${today.steps ?? '—'}</div></div>
-      <div class="card"><div class="k">Calories (total)</div><div class="v">${today.calories_total ?? '—'}<span class="unit">kcal</span></div></div>
-      <div class="card"><div class="k">Intensity minutes</div><div class="v">${(today.intensity_minutes_moderate ?? 0) + (today.intensity_minutes_vigorous ?? 0)}<span class="unit">min</span></div></div>
-    </div>
-
-    <div class="load-bar-card">
-      <div class="k">Sleep breakdown</div>
-      <div class="load-track" style="background:linear-gradient(90deg,
-          #4A5A8A 0% ${sleepPct(today,'sleep_deep_min')}%,
-          #7C9A72 ${sleepPct(today,'sleep_deep_min')}% ${sleepPct(today,'sleep_deep_min')+sleepPct(today,'sleep_rem_min')}%,
-          #C89B3C ${sleepPct(today,'sleep_deep_min')+sleepPct(today,'sleep_rem_min')}% ${sleepPct(today,'sleep_deep_min')+sleepPct(today,'sleep_rem_min')+sleepPct(today,'sleep_light_min')}%,
-          #B5533C ${sleepPct(today,'sleep_deep_min')+sleepPct(today,'sleep_rem_min')+sleepPct(today,'sleep_light_min')}% 100%);">
-      </div>
-      <div class="load-scale">
-        <span>Deep ${today.sleep_deep_min ?? '—'}m</span>
-        <span>REM ${today.sleep_rem_min ?? '—'}m</span>
-        <span>Light ${today.sleep_light_min ?? '—'}m</span>
-        <span>Awake ${today.sleep_awake_min ?? '—'}m</span>
+      <div class="insight">
+        <div class="insight-tag">${briefTag}</div>
+        <div id="briefText">${briefText}</div>
       </div>
     </div>
 
-    <div class="chart-card">
-      <div class="k">14-day trend</div>
-      <canvas id="trendChart" height="90"></canvas>
+    <div class="section">
+      <div class="section-label">Today</div>
+      <div class="stat-grid">
+        <div class="stat"><div class="v">${today.resting_hr ?? '—'}<span class="unit">bpm</span></div><div class="k">Resting HR</div></div>
+        <div class="stat"><div class="v">${today.hrv_avg_ms ?? '—'}<span class="unit">ms</span></div><div class="k">HRV</div></div>
+        <div class="stat"><div class="v">${today.sleep_score ?? '—'}</div><div class="k">Sleep score</div></div>
+        <div class="stat"><div class="v">${today.sleep_duration_h ?? '—'}<span class="unit">h</span></div><div class="k">Sleep duration</div></div>
+        <div class="stat"><div class="v">${today.body_battery_current ?? '—'}</div><div class="k">Battery now</div></div>
+        <div class="stat"><div class="v">${today.body_battery_high ?? '—'}</div><div class="k">Battery peak</div></div>
+        <div class="stat"><div class="v">${today.steps ?? '—'}</div><div class="k">Steps</div></div>
+        <div class="stat"><div class="v">${today.calories_total ?? '—'}<span class="unit">kcal</span></div><div class="k">Calories</div></div>
+        <div class="stat"><div class="v">${intensityTotal}<span class="unit">min</span></div><div class="k">Intensity</div></div>
+      </div>
     </div>
 
-    <div class="brief-log">
-      <h2>Recent briefs</h2>
+    <div class="section">
+      <div class="section-label">Sleep breakdown</div>
+      <div class="segbar">
+        <div style="width:${sleepPct(today,'sleep_deep_min')}%;background:var(--deep)"></div>
+        <div style="width:${sleepPct(today,'sleep_rem_min')}%;background:var(--rem)"></div>
+        <div style="width:${sleepPct(today,'sleep_light_min')}%;background:var(--light)"></div>
+        <div style="width:${sleepPct(today,'sleep_awake_min')}%;background:var(--awake)"></div>
+      </div>
+      <div class="seg-legend">
+        <div class="item"><span class="dot" style="background:var(--deep)"></span>Deep ${today.sleep_deep_min ?? '—'}m</div>
+        <div class="item"><span class="dot" style="background:var(--rem)"></span>REM ${today.sleep_rem_min ?? '—'}m</div>
+        <div class="item"><span class="dot" style="background:var(--light)"></span>Light ${today.sleep_light_min ?? '—'}m</div>
+        <div class="item"><span class="dot" style="background:var(--awake)"></span>Awake ${today.sleep_awake_min ?? '—'}m</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Training load · 7d : 28d ratio</div>
+      <div class="load-track"><div class="load-marker" style="left:${markerPct}%"></div></div>
+      <div class="load-scale"><span>0.0 undertrain</span><span>0.8–1.3 sweet spot</span><span>2.0 spike risk</span></div>
+      <div class="load-readout">${load.acwr ?? '—'}<span class="band">${load.band ?? ''}</span></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">14-day trend</div>
+      <canvas id="trendChart" height="110"></canvas>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Recent</div>
       <div id="briefLog"></div>
     </div>
   `;
@@ -278,10 +271,10 @@ Today's activities: ${actDesc}`;
 }
 
 async function runAiBrief(latest){
-  const h1 = document.querySelector('.hero-text h1');
-  const eyebrow = document.querySelector('.hero-text .eyebrow');
+  const target = document.getElementById('briefText');
+  const tag = document.querySelector('.insight-tag');
   const btn = document.getElementById('aiBriefBtn');
-  if (!h1) return;
+  if (!target) return;
 
   if (btn) { btn.disabled = true; btn.textContent = 'Generating…'; }
 
@@ -292,10 +285,8 @@ async function runAiBrief(latest){
       ? response.message.content[0].text
       : (typeof response === 'string' ? response : null);
     if (text && text.trim()) {
-      h1.textContent = text.trim();
-      if (eyebrow && !eyebrow.textContent.includes('AI generated')) {
-        eyebrow.textContent = eyebrow.textContent + ' · AI generated';
-      }
+      target.textContent = text.trim();
+      if (tag && !tag.textContent.includes('AI')) tag.textContent = tag.textContent + ' · AI';
       if (btn) btn.remove();
     } else {
       throw new Error('Empty response from puter.ai.chat');
@@ -312,14 +303,9 @@ async function runAiBrief(latest){
 
 function tryAiBrief(latest){
   if (typeof puter === 'undefined') return;
-  const eyebrow = document.querySelector('.hero-text .eyebrow');
-  if (!eyebrow) return;
+  const insight = document.querySelector('.insight');
+  if (!insight) return;
 
-  // puter.ai.chat() needs a signed-in Puter user. The FIRST sign-in opens a
-  // popup, and browsers only allow that from a direct click — never from
-  // code running automatically on page load. So: if already signed in
-  // (true on every visit after the first), run automatically. Otherwise,
-  // show a button so the popup has a click to attach to.
   if (puter.auth && puter.auth.isSignedIn && puter.auth.isSignedIn()) {
     runAiBrief(latest);
     return;
@@ -328,9 +314,8 @@ function tryAiBrief(latest){
   const btn = document.createElement('button');
   btn.id = 'aiBriefBtn';
   btn.textContent = 'Generate AI brief';
-  btn.style.cssText = 'margin-top:8px;padding:6px 12px;font:inherit;cursor:pointer;';
   btn.addEventListener('click', () => runAiBrief(latest));
-  eyebrow.after(btn);
+  insight.appendChild(btn);
 }
 
 function drawTrend(history){
@@ -345,23 +330,25 @@ function drawTrend(history){
       labels,
       datasets: [
         {
-          label: 'Recovery score',
+          label: 'Recovery',
           data: recoveryData,
-          borderColor: '#7C9A72',
+          borderColor: '#3DE8A0',
           backgroundColor: 'transparent',
           yAxisID: 'y',
-          tension: 0.3,
-          pointRadius: 2,
+          tension: 0.35,
+          pointRadius: 0,
+          borderWidth: 2.5,
         },
         {
-          label: 'Daily load (TRIMP)',
+          label: 'Load',
           data: loadData,
-          borderColor: '#C89B3C',
-          backgroundColor: 'rgba(200,155,60,0.08)',
+          borderColor: '#71767D',
+          backgroundColor: 'rgba(113,118,125,0.08)',
           fill: true,
           yAxisID: 'y1',
-          tension: 0.3,
-          pointRadius: 2,
+          tension: 0.35,
+          pointRadius: 0,
+          borderWidth: 1.5,
         }
       ]
     },
@@ -369,12 +356,12 @@ function drawTrend(history){
       responsive: true,
       interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { labels: { color: '#8A9099', font: { family: 'IBM Plex Mono', size: 10 } } }
+        legend: { labels: { color: '#71767D', boxWidth: 10, font: { size: 11 } } }
       },
       scales: {
-        x: { ticks: { color: '#8A9099', font: { family: 'IBM Plex Mono', size: 10 } }, grid: { color: '#2C333B' } },
-        y: { position: 'left', min:0, max:100, ticks: { color: '#8A9099', font: { size: 10 } }, grid: { color: '#2C333B' } },
-        y1: { position: 'right', min:0, ticks: { color: '#8A9099', font: { size: 10 } }, grid: { display:false } }
+        x: { ticks: { color: '#4B4F54', font: { size: 10 } }, grid: { display:false } },
+        y: { position: 'left', min:0, max:100, ticks: { color: '#4B4F54', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+        y1: { position: 'right', min:0, ticks: { display:false }, grid: { display:false } }
       }
     }
   });
@@ -386,9 +373,9 @@ function drawBriefLog(history){
   el.innerHTML = recent.map(r => {
     const rec = r.recovery || {};
     const load = r.load || {};
-    return `<div class="brief-entry">
-      <div class="tag">${r.date}</div>
-      <p>Recovery ${rec.score ?? '—'} (${rec.band ?? '—'}) · ACWR ${load.acwr ?? '—'} (${load.band ?? '—'})</p>
+    return `<div class="brief-row">
+      <div class="d">${r.date}</div>
+      <div class="s">${rec.score ?? '—'} · ${rec.band ?? '—'} &nbsp;·&nbsp; ACWR ${load.acwr ?? '—'}</div>
     </div>`;
   }).join('') || '<div class="empty">No history yet.</div>';
 }
