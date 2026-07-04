@@ -14,10 +14,10 @@
     "body_battery_wake": 10,
     "body_battery_high": 89,
     "body_battery_low": 10,
-    "body_battery_current": 89,
-    "steps": 321,
+    "body_battery_current": 72,
+    "steps": 374,
     "stress_avg": 12,
-    "calories_total": 849.0,
+    "calories_total": 1028.0,
     "calories_active": 2.0,
     "intensity_minutes_moderate": 0,
     "intensity_minutes_vigorous": 0,
@@ -40,7 +40,7 @@
     }
   },
   "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 1.0 (sweet spot). Training load is right in your typical productive range. Morning recovery was 67/100 (ready). Body battery dipped to 9 today.",
-  "updated_at": "2026-07-04T08:21",
+  "updated_at": "2026-07-04T09:36",
   "morning_brief": "Recovery: 69/100 (ready). Recovery looks solid. Nothing is holding you back today. Training load (ACWR 1.0): sweet spot. Training load is right in your typical productive range. Sleep score last night: 77 (7.83h). Woke up at 10 body battery.",
   "last_mode": "morning",
   "last_brief": "Recovery: 69/100 (ready). Recovery looks solid. Nothing is holding you back today. Training load (ACWR 1.0): sweet spot. Training load is right in your typical productive range. Sleep score last night: 77 (7.83h). Woke up at 10 body battery."
