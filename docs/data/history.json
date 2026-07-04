@@ -62,5 +62,35 @@
       "acwr": 1.0,
       "band": "sweet spot"
     }
+  },
+  {
+    "date": "2026-07-04",
+    "resting_hr": 49,
+    "hrv_avg_ms": null,
+    "hrv_status": null,
+    "sleep_score": 77,
+    "sleep_duration_h": 7.83,
+    "body_battery_wake": 10,
+    "body_battery_high": 89,
+    "body_battery_low": 10,
+    "steps": 321,
+    "stress_avg": 12,
+    "activities": [],
+    "recovery": {
+      "score": 69,
+      "band": "ready",
+      "components_used": [
+        "battery",
+        "rhr",
+        "sleep"
+      ]
+    },
+    "load": {
+      "daily_trimp": 0.0,
+      "acute_7d": 17.0,
+      "chronic_28d": 17.0,
+      "acwr": 1.0,
+      "band": "sweet spot"
+    }
   }
 ]
