@@ -163,6 +163,13 @@ function buildGauge(score, band){
 function loadMarkerPosition(acwr){
   const clamped = Math.max(0, Math.min(2, acwr ?? 1));
   return (clamped/2)*100;
+
+function sleepPct(today, key){
+  const total = (today.sleep_deep_min||0) + (today.sleep_rem_min||0) + (today.sleep_light_min||0) + (today.sleep_awake_min||0);
+  if (!total) return 0;
+  return Math.round(((today[key]||0) / total) * 100);
+}
+  
 }
 
 async function main(){
@@ -209,15 +216,27 @@ async function main(){
       <div class="card"><div class="k">HRV (overnight)</div><div class="v">${today.hrv_avg_ms ?? '—'}<span class="unit">ms</span></div></div>
       <div class="card"><div class="k">Sleep score</div><div class="v">${today.sleep_score ?? '—'}<span class="unit">/100</span></div></div>
       <div class="card"><div class="k">Sleep duration</div><div class="v">${today.sleep_duration_h ?? '—'}<span class="unit">h</span></div></div>
+      <div class="card"><div class="k">Body battery now</div><div class="v">${today.body_battery_current ?? '—'}</div></div>
       <div class="card"><div class="k">Body battery peak</div><div class="v">${today.body_battery_high ?? '—'}</div></div>
       <div class="card"><div class="k">Steps</div><div class="v">${today.steps ?? '—'}</div></div>
+      <div class="card"><div class="k">Calories (total)</div><div class="v">${today.calories_total ?? '—'}<span class="unit">kcal</span></div></div>
+      <div class="card"><div class="k">Intensity minutes</div><div class="v">${(today.intensity_minutes_moderate ?? 0) + (today.intensity_minutes_vigorous ?? 0)}<span class="unit">min</span></div></div>
     </div>
 
     <div class="load-bar-card">
-      <div class="k">Training load risk (7d : 28d ratio)</div>
-      <div class="load-track"><div class="load-marker" style="left:${markerPct}%"></div></div>
-      <div class="load-scale"><span>0.0 undertrain</span><span>0.8–1.3 sweet spot</span><span>2.0 spike risk</span></div>
-      <div class="load-readout">ACWR ${load.acwr ?? '—'} <span class="band">${load.band ?? ''}</span></div>
+      <div class="k">Sleep breakdown</div>
+      <div class="load-track" style="background:linear-gradient(90deg,
+          #4A5A8A 0% ${sleepPct(today,'sleep_deep_min')}%,
+          #7C9A72 ${sleepPct(today,'sleep_deep_min')}% ${sleepPct(today,'sleep_deep_min')+sleepPct(today,'sleep_rem_min')}%,
+          #C89B3C ${sleepPct(today,'sleep_deep_min')+sleepPct(today,'sleep_rem_min')}% ${sleepPct(today,'sleep_deep_min')+sleepPct(today,'sleep_rem_min')+sleepPct(today,'sleep_light_min')}%,
+          #B5533C ${sleepPct(today,'sleep_deep_min')+sleepPct(today,'sleep_rem_min')+sleepPct(today,'sleep_light_min')}% 100%);">
+      </div>
+      <div class="load-scale">
+        <span>Deep ${today.sleep_deep_min ?? '—'}m</span>
+        <span>REM ${today.sleep_rem_min ?? '—'}m</span>
+        <span>Light ${today.sleep_light_min ?? '—'}m</span>
+        <span>Awake ${today.sleep_awake_min ?? '—'}m</span>
+      </div>
     </div>
 
     <div class="chart-card">
