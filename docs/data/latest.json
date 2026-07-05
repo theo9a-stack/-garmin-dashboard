@@ -14,13 +14,13 @@
     "body_battery_wake": 20,
     "body_battery_high": 98,
     "body_battery_low": 20,
-    "body_battery_current": 74,
-    "steps": 1802,
-    "stress_avg": 13,
-    "calories_total": 1175.0,
-    "calories_active": 15.0,
-    "intensity_minutes_moderate": 0,
-    "intensity_minutes_vigorous": 0,
+    "body_battery_current": 30,
+    "steps": 10388,
+    "stress_avg": 21,
+    "calories_total": 2401.0,
+    "calories_active": 260.0,
+    "intensity_minutes_moderate": 3,
+    "intensity_minutes_vigorous": 1,
     "activities": [],
     "recovery": {
       "score": 75,
@@ -39,9 +39,9 @@
       "band": "sweet spot"
     }
   },
-  "evening_brief": "Today: Lauftraining Z2_40 \u2014 40.2 min @ 132.0 bpm avg. Added 46.9 TRIMP to your load. Current ACWR 1.0 (sweet spot). Training load is right in your typical productive range. Morning recovery was 69/100 (ready). Body battery dipped to 10 today.",
-  "updated_at": "2026-07-05T11:20",
+  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 1.0 (sweet spot). Training load is right in your typical productive range. Morning recovery was 75/100 (primed). Body battery dipped to 20 today.",
+  "updated_at": "2026-07-05T20:04",
   "morning_brief": "Recovery: 75/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 1.0): sweet spot. Training load is right in your typical productive range. Sleep score last night: 91 (8.35h). Woke up at 20 body battery.",
-  "last_mode": "morning",
-  "last_brief": "Recovery: 75/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 1.0): sweet spot. Training load is right in your typical productive range. Sleep score last night: 91 (8.35h). Woke up at 20 body battery."
+  "last_mode": "evening",
+  "last_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 1.0 (sweet spot). Training load is right in your typical productive range. Morning recovery was 75/100 (primed). Body battery dipped to 20 today."
 }
