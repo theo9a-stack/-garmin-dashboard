@@ -1,36 +1,29 @@
 {
-  "date": "2026-07-07",
+  "date": "2026-07-08",
   "today": {
-    "date": "2026-07-07",
-    "resting_hr": 47,
+    "date": "2026-07-08",
+    "resting_hr": 46,
     "hrv_avg_ms": null,
     "hrv_status": null,
-    "sleep_score": 66,
-    "sleep_duration_h": 7.19,
-    "sleep_deep_min": 61,
-    "sleep_light_min": 337,
-    "sleep_rem_min": 34,
-    "sleep_awake_min": 54,
-    "body_battery_wake": 17,
-    "body_battery_high": 86,
-    "body_battery_low": 14,
-    "body_battery_current": 14,
-    "steps": 6637,
-    "stress_avg": 32,
-    "calories_total": 2319.0,
-    "calories_active": 175.0,
+    "sleep_score": 75,
+    "sleep_duration_h": 7.51,
+    "sleep_deep_min": 63,
+    "sleep_light_min": 324,
+    "sleep_rem_min": 64,
+    "sleep_awake_min": 24,
+    "body_battery_wake": 19,
+    "body_battery_high": 94,
+    "body_battery_low": 19,
+    "body_battery_current": 75,
+    "steps": 2007,
+    "stress_avg": 13,
+    "calories_total": 942.0,
+    "calories_active": 91.0,
     "intensity_minutes_moderate": 0,
     "intensity_minutes_vigorous": 0,
-    "activities": [
-      {
-        "name": "Stoppuhr",
-        "type": "stop_watch",
-        "duration_min": 0.0,
-        "avg_hr": null
-      }
-    ],
+    "activities": [],
     "recovery": {
-      "score": 61,
+      "score": 70,
       "band": "ready",
       "components_used": [
         "battery",
@@ -40,15 +33,15 @@
     },
     "load": {
       "daily_trimp": 0.0,
-      "acute_7d": 25.2,
-      "chronic_28d": 25.2,
+      "acute_7d": 21.6,
+      "chronic_28d": 21.6,
       "acwr": 1.0,
       "band": "sweet spot"
     }
   },
   "evening_brief": "Today: Stoppuhr \u2014 0.0 min. Added 0.0 TRIMP to your load. Current ACWR 1.0 (sweet spot). Training load is right in your typical productive range. Morning recovery was 61/100 (ready). Body battery dipped to 14 today.",
-  "updated_at": "2026-07-07T22:43",
-  "morning_brief": "Recovery: 61/100 (ready). Recovery looks solid. Nothing is holding you back today. Training load (ACWR 1.0): sweet spot. Training load is right in your typical productive range. Sleep score last night: 66 (7.19h). Woke up at 17 body battery.",
-  "last_mode": "evening",
-  "last_brief": "Today: Stoppuhr \u2014 0.0 min. Added 0.0 TRIMP to your load. Current ACWR 1.0 (sweet spot). Training load is right in your typical productive range. Morning recovery was 61/100 (ready). Body battery dipped to 14 today."
+  "updated_at": "2026-07-08T11:58",
+  "morning_brief": "Recovery: 70/100 (ready). Recovery looks solid. Nothing is holding you back today. Training load (ACWR 1.0): sweet spot. Training load is right in your typical productive range. Sleep score last night: 75 (7.51h). Woke up at 19 body battery.",
+  "last_mode": "morning",
+  "last_brief": "Recovery: 70/100 (ready). Recovery looks solid. Nothing is holding you back today. Training load (ACWR 1.0): sweet spot. Training load is right in your typical productive range. Sleep score last night: 75 (7.51h). Woke up at 19 body battery."
 }
