@@ -827,5 +827,44 @@
       "acwr": 0.68,
       "band": "undertraining"
     }
+  },
+  {
+    "date": "2026-07-22",
+    "resting_hr": 42,
+    "hrv_avg_ms": null,
+    "hrv_status": null,
+    "sleep_score": 80,
+    "sleep_duration_h": 7.5,
+    "sleep_deep_min": 99,
+    "sleep_light_min": 276,
+    "sleep_rem_min": 75,
+    "sleep_awake_min": 16,
+    "body_battery_wake": 31,
+    "body_battery_high": 96,
+    "body_battery_low": 31,
+    "body_battery_current": 96,
+    "steps": 593,
+    "stress_avg": 7,
+    "calories_total": 767.0,
+    "calories_active": 13.0,
+    "intensity_minutes_moderate": 0,
+    "intensity_minutes_vigorous": 0,
+    "activities": [],
+    "recovery": {
+      "score": 90,
+      "band": "primed",
+      "components_used": [
+        "battery",
+        "rhr",
+        "sleep"
+      ]
+    },
+    "load": {
+      "daily_trimp": 0.0,
+      "acute_7d": 11.2,
+      "chronic_28d": 25.6,
+      "acwr": 0.44,
+      "band": "undertraining"
+    }
   }
 ]
