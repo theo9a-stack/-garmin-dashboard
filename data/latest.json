@@ -14,14 +14,21 @@
     "body_battery_wake": 5,
     "body_battery_high": 79,
     "body_battery_low": 5,
-    "body_battery_current": 49,
-    "steps": 1248,
-    "stress_avg": 20,
-    "calories_total": 1250.0,
-    "calories_active": 29.0,
-    "intensity_minutes_moderate": 0,
-    "intensity_minutes_vigorous": 0,
-    "activities": [],
+    "body_battery_current": 7,
+    "steps": 16445,
+    "stress_avg": 35,
+    "calories_total": 2885.0,
+    "calories_active": 766.0,
+    "intensity_minutes_moderate": 83,
+    "intensity_minutes_vigorous": 2,
+    "activities": [
+      {
+        "name": "Wunsiedel Walking",
+        "type": "walking",
+        "duration_min": 121.2,
+        "avg_hr": 115.0
+      }
+    ],
     "recovery": {
       "score": 51,
       "band": "moderate",
@@ -32,16 +39,16 @@
       ]
     },
     "load": {
-      "daily_trimp": 0.0,
-      "acute_7d": 7.6,
-      "chronic_28d": 18.2,
-      "acwr": 0.42,
-      "band": "undertraining"
+      "daily_trimp": 90.6,
+      "acute_7d": 20.5,
+      "chronic_28d": 21.4,
+      "acwr": 0.96,
+      "band": "sweet spot"
     }
   },
-  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.38 (undertraining). Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Morning recovery was 59/100 (ready). Body battery dipped to 5 today.",
-  "updated_at": "2026-08-01T11:06",
+  "evening_brief": "Today: Wunsiedel Walking \u2014 121.2 min @ 115.0 bpm avg. Added 90.6 TRIMP to your load. Current ACWR 0.96 (sweet spot). Training load is right in your typical productive range. Morning recovery was 51/100 (moderate). Body battery dipped to 5 today.",
+  "updated_at": "2026-08-01T22:14",
   "morning_brief": "Recovery: 51/100 (moderate). Recovery is middling. Not a red flag, but don't be surprised if things feel average. Training load (ACWR 0.42): undertraining. Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Sleep score last night: 79 (7.3h). Woke up at 5 body battery.",
-  "last_mode": "morning",
-  "last_brief": "Recovery: 51/100 (moderate). Recovery is middling. Not a red flag, but don't be surprised if things feel average. Training load (ACWR 0.42): undertraining. Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Sleep score last night: 79 (7.3h). Woke up at 5 body battery."
+  "last_mode": "evening",
+  "last_brief": "Today: Wunsiedel Walking \u2014 121.2 min @ 115.0 bpm avg. Added 90.6 TRIMP to your load. Current ACWR 0.96 (sweet spot). Training load is right in your typical productive range. Morning recovery was 51/100 (moderate). Body battery dipped to 5 today."
 }
