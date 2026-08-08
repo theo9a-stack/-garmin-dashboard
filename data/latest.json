@@ -13,15 +13,22 @@
     "sleep_awake_min": 15,
     "body_battery_wake": 13,
     "body_battery_high": 93,
-    "body_battery_low": 13,
-    "body_battery_current": 93,
-    "steps": 149,
-    "stress_avg": 9,
-    "calories_total": 768.0,
-    "calories_active": 0.0,
-    "intensity_minutes_moderate": 0,
-    "intensity_minutes_vigorous": 0,
-    "activities": [],
+    "body_battery_low": 10,
+    "body_battery_current": 10,
+    "steps": 12152,
+    "stress_avg": 28,
+    "calories_total": 2696.0,
+    "calories_active": 622.0,
+    "intensity_minutes_moderate": 1,
+    "intensity_minutes_vigorous": 30,
+    "activities": [
+      {
+        "name": "Lauftraining 5k_30",
+        "type": "running",
+        "duration_min": 29.8,
+        "avg_hr": 173.0
+      }
+    ],
     "recovery": {
       "score": 79,
       "band": "primed",
@@ -32,16 +39,16 @@
       ]
     },
     "load": {
-      "daily_trimp": 0.0,
-      "acute_7d": 8.4,
-      "chronic_28d": 17.9,
-      "acwr": 0.47,
-      "band": "undertraining"
+      "daily_trimp": 91.9,
+      "acute_7d": 21.6,
+      "chronic_28d": 21.2,
+      "acwr": 1.02,
+      "band": "sweet spot"
     }
   },
-  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 1.07 (sweet spot). Training load is right in your typical productive range. Morning recovery was 55/100 (ready). Body battery dipped to 19 today.",
-  "updated_at": "2026-08-08T06:07",
+  "evening_brief": "Today: Lauftraining 5k_30 \u2014 29.8 min @ 173.0 bpm avg. Added 91.9 TRIMP to your load. Current ACWR 1.02 (sweet spot). Training load is right in your typical productive range. Morning recovery was 79/100 (primed). Body battery dipped to 10 today.",
+  "updated_at": "2026-08-08T19:34",
   "morning_brief": "Recovery: 79/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 0.47): undertraining. Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Sleep score last night: 79 (7.08h). Woke up at 13 body battery.",
-  "last_mode": "morning",
-  "last_brief": "Recovery: 79/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 0.47): undertraining. Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Sleep score last night: 79 (7.08h). Woke up at 13 body battery."
+  "last_mode": "evening",
+  "last_brief": "Today: Lauftraining 5k_30 \u2014 29.8 min @ 173.0 bpm avg. Added 91.9 TRIMP to your load. Current ACWR 1.02 (sweet spot). Training load is right in your typical productive range. Morning recovery was 79/100 (primed). Body battery dipped to 10 today."
 }
