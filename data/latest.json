@@ -14,11 +14,11 @@
     "body_battery_wake": 17,
     "body_battery_high": 97,
     "body_battery_low": 17,
-    "body_battery_current": 97,
-    "steps": 81,
-    "stress_avg": 6,
-    "calories_total": 794.0,
-    "calories_active": 0.0,
+    "body_battery_current": 26,
+    "steps": 8953,
+    "stress_avg": 27,
+    "calories_total": 2154.0,
+    "calories_active": 259.0,
     "intensity_minutes_moderate": 0,
     "intensity_minutes_vigorous": 0,
     "activities": [],
@@ -39,9 +39,9 @@
       "band": "sweet spot"
     }
   },
-  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.84 (sweet spot). Training load is right in your typical productive range. Morning recovery was 58/100 (ready). Body battery dipped to 5 today.",
-  "updated_at": "2026-08-11T06:28",
+  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.84 (sweet spot). Training load is right in your typical productive range. Morning recovery was 87/100 (primed). Body battery dipped to 17 today.",
+  "updated_at": "2026-08-11T20:01",
   "morning_brief": "Recovery: 87/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 0.84): sweet spot. Training load is right in your typical productive range. Sleep score last night: 82 (7.97h). Woke up at 17 body battery.",
-  "last_mode": "morning",
-  "last_brief": "Recovery: 87/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 0.84): sweet spot. Training load is right in your typical productive range. Sleep score last night: 82 (7.97h). Woke up at 17 body battery."
+  "last_mode": "evening",
+  "last_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.84 (sweet spot). Training load is right in your typical productive range. Morning recovery was 87/100 (primed). Body battery dipped to 17 today."
 }
