@@ -2,32 +2,33 @@
   "date": "2026-08-21",
   "today": {
     "date": "2026-08-21",
-    "resting_hr": 48,
+    "resting_hr": 44,
     "hrv_avg_ms": null,
     "hrv_status": null,
-    "sleep_score": null,
-    "sleep_duration_h": 0.0,
-    "sleep_deep_min": 0,
-    "sleep_light_min": 0,
-    "sleep_rem_min": 0,
-    "sleep_awake_min": 0,
+    "sleep_score": 77,
+    "sleep_duration_h": 6.97,
+    "sleep_deep_min": 91,
+    "sleep_light_min": 264,
+    "sleep_rem_min": 63,
+    "sleep_awake_min": 20,
     "body_battery_wake": 22,
-    "body_battery_high": 57,
+    "body_battery_high": 96,
     "body_battery_low": 22,
-    "body_battery_current": 57,
-    "steps": 15,
-    "stress_avg": 15,
-    "calories_total": 376.0,
-    "calories_active": 0.0,
+    "body_battery_current": 37,
+    "steps": 3124,
+    "stress_avg": 23,
+    "calories_total": 1861.0,
+    "calories_active": 52.0,
     "intensity_minutes_moderate": 0,
     "intensity_minutes_vigorous": 0,
     "activities": [],
     "recovery": {
-      "score": 25,
-      "band": "compromised",
+      "score": 77,
+      "band": "primed",
       "components_used": [
         "battery",
-        "rhr"
+        "rhr",
+        "sleep"
       ]
     },
     "load": {
@@ -38,9 +39,9 @@
       "band": "caution"
     }
   },
-  "evening_brief": "Today: Lauftraining Z2_40 \u2014 40.0 min @ 132.0 bpm avg. Added 48.1 TRIMP to your load. Current ACWR 1.39 (caution). Training load has climbed faster than your body has adapted to. Worth being deliberate about intensity the next few days. Morning recovery was 67/100 (ready). Body battery dipped to 14 today.",
-  "updated_at": "2026-08-21T05:58",
+  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 1.39 (caution). Training load has climbed faster than your body has adapted to. Worth being deliberate about intensity the next few days. Morning recovery was 77/100 (primed). Body battery dipped to 22 today.",
+  "updated_at": "2026-08-21T19:29",
   "morning_brief": "Recovery: 25/100 (compromised). Recovery markers are down versus your recent baseline. Your body is asking for an easier day. Training load (ACWR 1.39): caution. Training load has climbed faster than your body has adapted to. Worth being deliberate about intensity the next few days. Woke up at 22 body battery.",
-  "last_mode": "morning",
-  "last_brief": "Recovery: 25/100 (compromised). Recovery markers are down versus your recent baseline. Your body is asking for an easier day. Training load (ACWR 1.39): caution. Training load has climbed faster than your body has adapted to. Worth being deliberate about intensity the next few days. Woke up at 22 body battery."
+  "last_mode": "evening",
+  "last_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 1.39 (caution). Training load has climbed faster than your body has adapted to. Worth being deliberate about intensity the next few days. Morning recovery was 77/100 (primed). Body battery dipped to 22 today."
 }
