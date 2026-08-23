@@ -2,45 +2,53 @@
   "date": "2026-08-23",
   "today": {
     "date": "2026-08-23",
-    "resting_hr": 49,
+    "resting_hr": 43,
     "hrv_avg_ms": null,
     "hrv_status": null,
-    "sleep_score": null,
-    "sleep_duration_h": 0.0,
-    "sleep_deep_min": 0,
-    "sleep_light_min": 0,
-    "sleep_rem_min": 0,
-    "sleep_awake_min": 0,
+    "sleep_score": 77,
+    "sleep_duration_h": 7.5,
+    "sleep_deep_min": 72,
+    "sleep_light_min": 299,
+    "sleep_rem_min": 79,
+    "sleep_awake_min": 34,
     "body_battery_wake": 10,
-    "body_battery_high": 11,
+    "body_battery_high": 84,
     "body_battery_low": 10,
-    "body_battery_current": 11,
-    "steps": null,
+    "body_battery_current": 39,
+    "steps": 5581,
     "stress_avg": 21,
-    "calories_total": 25.0,
-    "calories_active": 0.0,
-    "intensity_minutes_moderate": 0,
-    "intensity_minutes_vigorous": 0,
-    "activities": [],
+    "calories_total": 1997.0,
+    "calories_active": 354.0,
+    "intensity_minutes_moderate": 6,
+    "intensity_minutes_vigorous": 23,
+    "activities": [
+      {
+        "name": "4x4",
+        "type": "running",
+        "duration_min": 28.0,
+        "avg_hr": 155.0
+      }
+    ],
     "recovery": {
-      "score": 4,
-      "band": "compromised",
+      "score": 80,
+      "band": "primed",
       "components_used": [
         "battery",
-        "rhr"
+        "rhr",
+        "sleep"
       ]
     },
     "load": {
-      "daily_trimp": 0.0,
-      "acute_7d": 15.1,
-      "chronic_28d": 16.1,
-      "acwr": 0.94,
+      "daily_trimp": 59.0,
+      "acute_7d": 23.5,
+      "chronic_28d": 18.2,
+      "acwr": 1.29,
       "band": "sweet spot"
     }
   },
-  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.94 (sweet spot). Training load is right in your typical productive range. Morning recovery was 87/100 (primed). Body battery dipped to 22 today.",
-  "updated_at": "2026-08-23T05:55",
+  "evening_brief": "Today: 4x4 \u2014 28.0 min @ 155.0 bpm avg. Added 59.0 TRIMP to your load. Current ACWR 1.29 (sweet spot). Training load is right in your typical productive range. Morning recovery was 80/100 (primed). Body battery dipped to 10 today.",
+  "updated_at": "2026-08-23T19:25",
   "morning_brief": "Recovery: 4/100 (compromised). Recovery markers are down versus your recent baseline. Your body is asking for an easier day. Training load (ACWR 0.94): sweet spot. Training load is right in your typical productive range. Woke up at 10 body battery.",
-  "last_mode": "morning",
-  "last_brief": "Recovery: 4/100 (compromised). Recovery markers are down versus your recent baseline. Your body is asking for an easier day. Training load (ACWR 0.94): sweet spot. Training load is right in your typical productive range. Woke up at 10 body battery."
+  "last_mode": "evening",
+  "last_brief": "Today: 4x4 \u2014 28.0 min @ 155.0 bpm avg. Added 59.0 TRIMP to your load. Current ACWR 1.29 (sweet spot). Training load is right in your typical productive range. Morning recovery was 80/100 (primed). Body battery dipped to 10 today."
 }
