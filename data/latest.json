@@ -13,12 +13,12 @@
     "sleep_awake_min": 34,
     "body_battery_wake": 24,
     "body_battery_high": 98,
-    "body_battery_low": 24,
-    "body_battery_current": 58,
-    "steps": 5882,
-    "stress_avg": 16,
-    "calories_total": 1719.0,
-    "calories_active": 494.0,
+    "body_battery_low": 16,
+    "body_battery_current": 16,
+    "steps": 14768,
+    "stress_avg": 27,
+    "calories_total": 3118.0,
+    "calories_active": 793.0,
     "intensity_minutes_moderate": 3,
     "intensity_minutes_vigorous": 34,
     "activities": [
@@ -46,9 +46,9 @@
       "band": "sweet spot"
     }
   },
-  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.65 (undertraining). Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Morning recovery was 87/100 (primed). Body battery dipped to 16 today.",
-  "updated_at": "2026-08-31T11:45",
+  "evening_brief": "Today: Kolobrzeg (Gmina) Running \u2014 28.0 min @ 167.0 bpm avg. Added 76.1 TRIMP to your load. Current ACWR 1.3 (sweet spot). Training load is right in your typical productive range. Morning recovery was 75/100 (primed). Body battery dipped to 16 today.",
+  "updated_at": "2026-08-31T23:09",
   "morning_brief": "Recovery: 75/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 1.3): sweet spot. Training load is right in your typical productive range. Sleep score last night: 75 (8.13h). Woke up at 24 body battery.",
-  "last_mode": "morning",
-  "last_brief": "Recovery: 75/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 1.3): sweet spot. Training load is right in your typical productive range. Sleep score last night: 75 (8.13h). Woke up at 24 body battery."
+  "last_mode": "evening",
+  "last_brief": "Today: Kolobrzeg (Gmina) Running \u2014 28.0 min @ 167.0 bpm avg. Added 76.1 TRIMP to your load. Current ACWR 1.3 (sweet spot). Training load is right in your typical productive range. Morning recovery was 75/100 (primed). Body battery dipped to 16 today."
 }
