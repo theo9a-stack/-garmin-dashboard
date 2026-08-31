@@ -1,29 +1,36 @@
 {
-  "date": "2026-08-30",
+  "date": "2026-08-31",
   "today": {
-    "date": "2026-08-30",
-    "resting_hr": 42,
+    "date": "2026-08-31",
+    "resting_hr": 44,
     "hrv_avg_ms": null,
     "hrv_status": null,
-    "sleep_score": 68,
-    "sleep_duration_h": 7.3,
-    "sleep_deep_min": 63,
-    "sleep_light_min": 316,
-    "sleep_rem_min": 59,
-    "sleep_awake_min": 42,
-    "body_battery_wake": 18,
-    "body_battery_high": 96,
-    "body_battery_low": 16,
-    "body_battery_current": 16,
-    "steps": 6956,
-    "stress_avg": 30,
-    "calories_total": 2423.0,
-    "calories_active": 174.0,
-    "intensity_minutes_moderate": 0,
-    "intensity_minutes_vigorous": 0,
-    "activities": [],
+    "sleep_score": 75,
+    "sleep_duration_h": 8.13,
+    "sleep_deep_min": 78,
+    "sleep_light_min": 366,
+    "sleep_rem_min": 44,
+    "sleep_awake_min": 34,
+    "body_battery_wake": 24,
+    "body_battery_high": 98,
+    "body_battery_low": 24,
+    "body_battery_current": 58,
+    "steps": 5882,
+    "stress_avg": 16,
+    "calories_total": 1719.0,
+    "calories_active": 494.0,
+    "intensity_minutes_moderate": 3,
+    "intensity_minutes_vigorous": 34,
+    "activities": [
+      {
+        "name": "Kolobrzeg (Gmina) Running",
+        "type": "running",
+        "duration_min": 28.0,
+        "avg_hr": 167.0
+      }
+    ],
     "recovery": {
-      "score": 87,
+      "score": 75,
       "band": "primed",
       "components_used": [
         "battery",
@@ -32,16 +39,16 @@
       ]
     },
     "load": {
-      "daily_trimp": 0.0,
-      "acute_7d": 10.2,
-      "chronic_28d": 15.6,
-      "acwr": 0.65,
-      "band": "undertraining"
+      "daily_trimp": 76.1,
+      "acute_7d": 21.0,
+      "chronic_28d": 16.2,
+      "acwr": 1.3,
+      "band": "sweet spot"
     }
   },
   "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.65 (undertraining). Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Morning recovery was 87/100 (primed). Body battery dipped to 16 today.",
-  "updated_at": "2026-08-30T21:52",
-  "morning_brief": "Recovery: 87/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 0.65): undertraining. Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Sleep score last night: 68 (7.3h). Woke up at 18 body battery.",
-  "last_mode": "evening",
-  "last_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.65 (undertraining). Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Morning recovery was 87/100 (primed). Body battery dipped to 16 today."
+  "updated_at": "2026-08-31T11:45",
+  "morning_brief": "Recovery: 75/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 1.3): sweet spot. Training load is right in your typical productive range. Sleep score last night: 75 (8.13h). Woke up at 24 body battery.",
+  "last_mode": "morning",
+  "last_brief": "Recovery: 75/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 1.3): sweet spot. Training load is right in your typical productive range. Sleep score last night: 75 (8.13h). Woke up at 24 body battery."
 }
