@@ -14,11 +14,11 @@
     "body_battery_wake": 7,
     "body_battery_high": 83,
     "body_battery_low": 7,
-    "body_battery_current": 49,
-    "steps": 2317,
-    "stress_avg": 26,
-    "calories_total": 1177.0,
-    "calories_active": 76.0,
+    "body_battery_current": 38,
+    "steps": 4104,
+    "stress_avg": 30,
+    "calories_total": 1452.0,
+    "calories_active": 138.0,
     "intensity_minutes_moderate": 0,
     "intensity_minutes_vigorous": 0,
     "activities": [],
@@ -39,9 +39,9 @@
       "band": "undertraining"
     }
   },
-  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.0 (undertraining). Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Morning recovery was 47/100 (moderate). Body battery dipped to 11 today.",
-  "updated_at": "2026-09-17T10:17",
+  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.0 (undertraining). Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Morning recovery was 51/100 (moderate). Body battery dipped to 7 today.",
+  "updated_at": "2026-09-17T22:00",
   "morning_brief": "Recovery: 51/100 (moderate). Recovery is middling. Not a red flag, but don't be surprised if things feel average. Training load (ACWR 0.0): undertraining. Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Sleep score last night: 80 (7.78h). Woke up at 7 body battery.",
-  "last_mode": "morning",
-  "last_brief": "Recovery: 51/100 (moderate). Recovery is middling. Not a red flag, but don't be surprised if things feel average. Training load (ACWR 0.0): undertraining. Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Sleep score last night: 80 (7.78h). Woke up at 7 body battery."
+  "last_mode": "evening",
+  "last_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.0 (undertraining). Training load has dropped well below your recent normal \u2014 fine for a rest block, but fitness will start to slide if it continues. Morning recovery was 51/100 (moderate). Body battery dipped to 7 today."
 }
