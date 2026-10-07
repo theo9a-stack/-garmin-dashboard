@@ -2,30 +2,34 @@
   "date": "2026-10-07",
   "today": {
     "date": "2026-10-07",
-    "resting_hr": null,
+    "resting_hr": 42,
     "hrv_avg_ms": null,
     "hrv_status": null,
-    "sleep_score": null,
-    "sleep_duration_h": 0.0,
-    "sleep_deep_min": 0,
-    "sleep_light_min": 0,
-    "sleep_rem_min": 0,
-    "sleep_awake_min": 0,
-    "body_battery_wake": null,
-    "body_battery_high": null,
-    "body_battery_low": null,
-    "body_battery_current": null,
-    "steps": null,
-    "stress_avg": null,
-    "calories_total": null,
-    "calories_active": null,
-    "intensity_minutes_moderate": null,
-    "intensity_minutes_vigorous": null,
+    "sleep_score": 81,
+    "sleep_duration_h": 7.87,
+    "sleep_deep_min": 94,
+    "sleep_light_min": 313,
+    "sleep_rem_min": 65,
+    "sleep_awake_min": 18,
+    "body_battery_wake": 17,
+    "body_battery_high": 95,
+    "body_battery_low": 17,
+    "body_battery_current": 67,
+    "steps": 1497,
+    "stress_avg": 15,
+    "calories_total": 1131.0,
+    "calories_active": 68.0,
+    "intensity_minutes_moderate": 0,
+    "intensity_minutes_vigorous": 0,
     "activities": [],
     "recovery": {
-      "score": null,
-      "band": "no data",
-      "components_used": []
+      "score": 89,
+      "band": "primed",
+      "components_used": [
+        "battery",
+        "rhr",
+        "sleep"
+      ]
     },
     "load": {
       "daily_trimp": 0.0,
@@ -35,9 +39,9 @@
       "band": "high injury risk"
     }
   },
-  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 1.52 (high injury risk). Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Morning recovery was 93/100 (primed). Body battery dipped to 16 today.",
-  "updated_at": "2026-10-07T11:55",
+  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 3.89 (high injury risk). Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Morning recovery was 89/100 (primed). Body battery dipped to 17 today.",
+  "updated_at": "2026-10-07T23:30",
   "morning_brief": "Recovery: None/100 (no data). No recovery data available yet today. Training load (ACWR 3.89): high injury risk. Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely.",
-  "last_mode": "morning",
-  "last_brief": "Recovery: None/100 (no data). No recovery data available yet today. Training load (ACWR 3.89): high injury risk. Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely."
+  "last_mode": "evening",
+  "last_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 3.89 (high injury risk). Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Morning recovery was 89/100 (primed). Body battery dipped to 17 today."
 }
