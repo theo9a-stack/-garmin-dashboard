@@ -4646,15 +4646,22 @@
     "sleep_awake_min": 22,
     "body_battery_wake": 22,
     "body_battery_high": 99,
-    "body_battery_low": 22,
-    "body_battery_current": 99,
-    "steps": 335,
-    "stress_avg": 14,
-    "calories_total": 988.0,
-    "calories_active": 5.0,
-    "intensity_minutes_moderate": 0,
-    "intensity_minutes_vigorous": 0,
-    "activities": [],
+    "body_battery_low": 19,
+    "body_battery_current": 19,
+    "steps": 8404,
+    "stress_avg": 30,
+    "calories_total": 2721.0,
+    "calories_active": 551.0,
+    "intensity_minutes_moderate": 4,
+    "intensity_minutes_vigorous": 26,
+    "activities": [
+      {
+        "name": "Treadmill Running",
+        "type": "treadmill_running",
+        "duration_min": 28.2,
+        "avg_hr": 162.0
+      }
+    ],
     "recovery": {
       "score": 76,
       "band": "primed",
@@ -4665,11 +4672,11 @@
       ]
     },
     "load": {
-      "daily_trimp": 0.0,
-      "acute_7d": 0.0,
-      "chronic_28d": 0.9,
-      "acwr": 0.0,
-      "band": "undertraining"
+      "daily_trimp": 68.6,
+      "acute_7d": 9.8,
+      "chronic_28d": 3.3,
+      "acwr": 2.97,
+      "band": "high injury risk"
     }
   }
 ]
