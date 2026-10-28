@@ -4756,5 +4756,44 @@
       "acwr": 2.97,
       "band": "high injury risk"
     }
+  },
+  {
+    "date": "2026-10-28",
+    "resting_hr": 50,
+    "hrv_avg_ms": null,
+    "hrv_status": null,
+    "sleep_score": 74,
+    "sleep_duration_h": 7.87,
+    "sleep_deep_min": 119,
+    "sleep_light_min": 304,
+    "sleep_rem_min": 49,
+    "sleep_awake_min": 2,
+    "body_battery_wake": 7,
+    "body_battery_high": 59,
+    "body_battery_low": 7,
+    "body_battery_current": 33,
+    "steps": 2359,
+    "stress_avg": 33,
+    "calories_total": 1197.0,
+    "calories_active": 106.0,
+    "intensity_minutes_moderate": 0,
+    "intensity_minutes_vigorous": 0,
+    "activities": [],
+    "recovery": {
+      "score": 44,
+      "band": "moderate",
+      "components_used": [
+        "battery",
+        "rhr",
+        "sleep"
+      ]
+    },
+    "load": {
+      "daily_trimp": 0.0,
+      "acute_7d": 9.8,
+      "chronic_28d": 3.3,
+      "acwr": 2.97,
+      "band": "high injury risk"
+    }
   }
 ]
