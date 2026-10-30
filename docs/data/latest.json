@@ -13,14 +13,14 @@
     "sleep_awake_min": 4,
     "body_battery_wake": 7,
     "body_battery_high": 76,
-    "body_battery_low": 7,
-    "body_battery_current": 41,
-    "steps": 2466,
-    "stress_avg": 28,
-    "calories_total": 1175.0,
-    "calories_active": 75.0,
-    "intensity_minutes_moderate": 0,
-    "intensity_minutes_vigorous": 0,
+    "body_battery_low": 5,
+    "body_battery_current": 5,
+    "steps": 12866,
+    "stress_avg": 37,
+    "calories_total": 2782.0,
+    "calories_active": 513.0,
+    "intensity_minutes_moderate": 3,
+    "intensity_minutes_vigorous": 3,
     "activities": [],
     "recovery": {
       "score": 64,
@@ -39,9 +39,9 @@
       "band": "high injury risk"
     }
   },
-  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 2.97 (high injury risk). Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Morning recovery was 53/100 (moderate). Body battery dipped to 5 today.",
-  "updated_at": "2026-10-30T11:31",
+  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 4.08 (high injury risk). Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Morning recovery was 64/100 (ready). Body battery dipped to 5 today.",
+  "updated_at": "2026-10-30T22:52",
   "morning_brief": "Recovery: 64/100 (ready). Recovery looks solid. Nothing is holding you back today. Training load (ACWR 4.08): high injury risk. Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Sleep score last night: 73 (7.08h). Woke up at 7 body battery.",
-  "last_mode": "morning",
-  "last_brief": "Recovery: 64/100 (ready). Recovery looks solid. Nothing is holding you back today. Training load (ACWR 4.08): high injury risk. Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Sleep score last night: 73 (7.08h). Woke up at 7 body battery."
+  "last_mode": "evening",
+  "last_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 4.08 (high injury risk). Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Morning recovery was 64/100 (ready). Body battery dipped to 5 today."
 }
