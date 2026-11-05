@@ -14,14 +14,21 @@
     "body_battery_wake": 12,
     "body_battery_high": 95,
     "body_battery_low": 12,
-    "body_battery_current": 48,
-    "steps": 4254,
-    "stress_avg": 19,
-    "calories_total": 1510.0,
-    "calories_active": 118.0,
-    "intensity_minutes_moderate": 4,
-    "intensity_minutes_vigorous": 1,
-    "activities": [],
+    "body_battery_current": 14,
+    "steps": 16823,
+    "stress_avg": 24,
+    "calories_total": 3017.0,
+    "calories_active": 697.0,
+    "intensity_minutes_moderate": 15,
+    "intensity_minutes_vigorous": 22,
+    "activities": [
+      {
+        "name": "Treadmill Running",
+        "type": "treadmill_running",
+        "duration_min": 30.2,
+        "avg_hr": 133.0
+      }
+    ],
     "recovery": {
       "score": 71,
       "band": "ready",
@@ -32,16 +39,16 @@
       ]
     },
     "load": {
-      "daily_trimp": 0.0,
-      "acute_7d": 10.2,
-      "chronic_28d": 5.0,
-      "acwr": 2.04,
+      "daily_trimp": 37.2,
+      "acute_7d": 15.5,
+      "chronic_28d": 6.3,
+      "acwr": 2.46,
       "band": "high injury risk"
     }
   },
-  "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 2.04 (high injury risk). Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Morning recovery was None/100 (no data).",
-  "updated_at": "2026-11-05T13:25",
+  "evening_brief": "Today: Treadmill Running \u2014 30.2 min @ 133.0 bpm avg. Added 37.2 TRIMP to your load. Current ACWR 2.46 (high injury risk). Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Morning recovery was 71/100 (ready). Body battery dipped to 12 today.",
+  "updated_at": "2026-11-05T23:59",
   "morning_brief": "Recovery: 71/100 (ready). Recovery looks solid. Nothing is holding you back today. Training load (ACWR 2.04): high injury risk. Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Sleep score last night: 80 (7.2h). Woke up at 12 body battery.",
-  "last_mode": "morning",
-  "last_brief": "Recovery: 71/100 (ready). Recovery looks solid. Nothing is holding you back today. Training load (ACWR 2.04): high injury risk. Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Sleep score last night: 80 (7.2h). Woke up at 12 body battery."
+  "last_mode": "evening",
+  "last_brief": "Today: Treadmill Running \u2014 30.2 min @ 133.0 bpm avg. Added 37.2 TRIMP to your load. Current ACWR 2.46 (high injury risk). Load has spiked sharply versus your 4-week average. This is the range where overuse injuries and burnout become more likely. Morning recovery was 71/100 (ready). Body battery dipped to 12 today."
 }
