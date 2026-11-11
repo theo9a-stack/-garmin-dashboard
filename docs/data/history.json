@@ -5358,5 +5358,51 @@
       "acwr": 2.44,
       "band": "high injury risk"
     }
+  },
+  {
+    "date": "2026-11-11",
+    "resting_hr": 47,
+    "hrv_avg_ms": null,
+    "hrv_status": null,
+    "sleep_score": 76,
+    "sleep_duration_h": 7.2,
+    "sleep_deep_min": 61,
+    "sleep_light_min": 312,
+    "sleep_rem_min": 59,
+    "sleep_awake_min": 18,
+    "body_battery_wake": 24,
+    "body_battery_high": 83,
+    "body_battery_low": 24,
+    "body_battery_current": 44,
+    "steps": 6741,
+    "stress_avg": 28,
+    "calories_total": 1475.0,
+    "calories_active": 363.0,
+    "intensity_minutes_moderate": 9,
+    "intensity_minutes_vigorous": 23,
+    "activities": [
+      {
+        "name": "Treadmill Running",
+        "type": "treadmill_running",
+        "duration_min": 30.2,
+        "avg_hr": 132.0
+      }
+    ],
+    "recovery": {
+      "score": 63,
+      "band": "ready",
+      "components_used": [
+        "battery",
+        "rhr",
+        "sleep"
+      ]
+    },
+    "load": {
+      "daily_trimp": 36.0,
+      "acute_7d": 36.6,
+      "chronic_28d": 14.2,
+      "acwr": 2.58,
+      "band": "high injury risk"
+    }
   }
 ]
