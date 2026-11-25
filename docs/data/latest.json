@@ -2,32 +2,33 @@
   "date": "2026-11-25",
   "today": {
     "date": "2026-11-25",
-    "resting_hr": 49,
+    "resting_hr": 46,
     "hrv_avg_ms": null,
     "hrv_status": null,
-    "sleep_score": null,
-    "sleep_duration_h": 0.0,
-    "sleep_deep_min": 0,
-    "sleep_light_min": 0,
-    "sleep_rem_min": 0,
-    "sleep_awake_min": 0,
+    "sleep_score": 76,
+    "sleep_duration_h": 7.13,
+    "sleep_deep_min": 130,
+    "sleep_light_min": 255,
+    "sleep_rem_min": 43,
+    "sleep_awake_min": 9,
     "body_battery_wake": 20,
-    "body_battery_high": 47,
+    "body_battery_high": 82,
     "body_battery_low": 20,
-    "body_battery_current": 47,
-    "steps": null,
-    "stress_avg": 16,
-    "calories_total": 227.0,
-    "calories_active": 0.0,
+    "body_battery_current": 40,
+    "steps": 4266,
+    "stress_avg": 26,
+    "calories_total": 1477.0,
+    "calories_active": 161.0,
     "intensity_minutes_moderate": 0,
     "intensity_minutes_vigorous": 0,
     "activities": [],
     "recovery": {
-      "score": 34,
-      "band": "compromised",
+      "score": 71,
+      "band": "ready",
       "components_used": [
         "battery",
-        "rhr"
+        "rhr",
+        "sleep"
       ]
     },
     "load": {
@@ -39,8 +40,8 @@
     }
   },
   "evening_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.8 (sweet spot). Training load is right in your typical productive range. Morning recovery was 34/100 (compromised). Body battery dipped to 20 today.",
-  "updated_at": "2026-11-25T02:58",
-  "morning_brief": "Recovery: 91/100 (primed). Your body is well recovered \u2014 HRV and resting HR are both trending favorably. Training load (ACWR 0.8): sweet spot. Training load is right in your typical productive range. Sleep score last night: 79 (7.35h). Woke up at 15 body battery.",
-  "last_mode": "evening",
-  "last_brief": "Today: no logged activity today. Added 0.0 TRIMP to your load. Current ACWR 0.8 (sweet spot). Training load is right in your typical productive range. Morning recovery was 34/100 (compromised). Body battery dipped to 20 today."
+  "updated_at": "2026-11-25T15:55",
+  "morning_brief": "Recovery: 71/100 (ready). Recovery looks solid. Nothing is holding you back today. Training load (ACWR 0.8): sweet spot. Training load is right in your typical productive range. Sleep score last night: 76 (7.13h). Woke up at 20 body battery.",
+  "last_mode": "morning",
+  "last_brief": "Recovery: 71/100 (ready). Recovery looks solid. Nothing is holding you back today. Training load (ACWR 0.8): sweet spot. Training load is right in your typical productive range. Sleep score last night: 76 (7.13h). Woke up at 20 body battery."
 }
